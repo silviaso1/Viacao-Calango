@@ -23,7 +23,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 350px;
+  height: 390px;
   background-color: #0E0C5F;
 }
 main .mensagem {
