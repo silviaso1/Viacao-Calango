@@ -1,4 +1,5 @@
 @import "../../exports/footer.scss";
+@import "../../exports/header.scss";
 
 *{
     margin: 0;
@@ -12,11 +13,7 @@ body {
 }
 
 .container {
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+ 
 
     .banner {
         text-align: center;
