@@ -1,8 +1,7 @@
-@import "../../../inicio/exports/header.scss";
 
 body {
     font-family: Arial, sans-serif;
-    background-image: url("../img/BG.png");
+    background-image: url("../img/BG\ \(1\).png");
     background-size: cover;
     color: #333;
     height: 800px;
@@ -40,20 +39,6 @@ main {
 .container {
     border-radius: 8px;
     text-align: center;
-
-    .escolha{
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-        margin-top: 5px;
-        p{
-            font-size: small;
-            margin-left: 20px;
-        }
-        label{
-            font-size: small;
-        }
-    }
 
     form {
         display: flex;

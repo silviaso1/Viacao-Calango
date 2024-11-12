@@ -1,3 +1,5 @@
+@import "../../../inicio/exports/header.scss";
+
 body {
     font-family: Arial, sans-serif;
     background-image: url("../img/BG.png");
@@ -18,13 +20,6 @@ body {
     border-radius: 8px;
     text-align: center;
 
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 78px;
-        background-color: white;
-    }
 
     form {
         display: flex;
