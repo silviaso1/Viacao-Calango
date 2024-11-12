@@ -1,4 +1,4 @@
-@import "../footer.scss";
+@import "../../exports/footer.scss";
 
 *{
     margin: 0;
@@ -12,7 +12,6 @@ body {
 }
 
 .container {
-
     header {
         display: flex;
         justify-content: space-between;
@@ -90,7 +89,7 @@ body {
             gap: 20px;
     
             .item {
-                background-color: #f0f0f0; // Cor de fundo clara
+                background-color: #f0f0f0; 
                 padding: 20px;
                 border-radius: 8px;
                 width: 220px;

@@ -1,4 +1,8 @@
-@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: Arial, sans-serif;
   color: #333;
@@ -8,28 +12,28 @@ body {
 }
 
 .container {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-  background-color: #fff;
+  padding: 60px;
+  background-color: #F1F2F6;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 header {
-  display: flex;
-  justify-content: center;
+  background-color: white;
   padding-bottom: 20px;
 }
 header img {
   max-width: 150px;
+  margin-left: 30px;
+  padding-top: 20px;
 }
 
 main .dados-passageiro, main .resumo, main .pagamento, main .informacoes-adicionais {
   margin-bottom: 20px;
   padding: 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #adacac;
   border-radius: 8px;
+  background-color: white;
 }
 main .dados-passageiro h2, main .resumo h2, main .pagamento h2, main .informacoes-adicionais h2 {
   font-size: 18px;
@@ -136,14 +140,25 @@ footer p a {
   text-decoration: none;
 }
 
-/* Estilos para a página de confirmação de reserva */
 .confirmacao {
   background-color: #1e3a5f;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 .confirmacao .mensagem {
   text-align: center;
-  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.confirmacao .mensagem div {
+  display: flex;
+  justify-content: center;
 }
 .confirmacao .mensagem img {
   width: 80px;
