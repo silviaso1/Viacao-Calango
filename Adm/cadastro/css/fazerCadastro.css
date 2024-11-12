@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #001f3f;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.container .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container .logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+.container .logo h1 {
+  font-size: 24px;
+  color: #fff;
+}
+.container h2 {
+  color: #a855f7;
+  margin-top: 20px;
+}
+.container .form-cadastro {
+  background-color: #222;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.container .form-cadastro input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+.container .form-cadastro button {
+  background-color: #a855f7;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.container .form-cadastro button:hover {
+  background-color: #7e3aa6;
+}/*# sourceMappingURL=fazerCadastro.css.map */

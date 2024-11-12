@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento</title>
+    <link rel="stylesheet" href="./css/pagamento.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="logo.png" alt="Logo Viação Galango">
+        </header>
+        
+        <main>
+            <div class="dados">
+                <section class="dados-passageiro">
+                    <h2>Dados do passageiro</h2>
+                    <div class="informacoes-viagem">
+                        <p><strong>Semi-leito</strong></p>
+                        <p>00:05 <span>&rarr;</span> 06:35</p>
+                        <p>Rio de Janeiro - Rodoviária <br> São Paulo - Rodoviária</p>
+                        <p>6h 30min de viagem</p>
+                    </div>
+                    <form>
+                        <input type="text" placeholder="Nome completo">
+                        <input type="text" placeholder="Número do documento">
+                        <label>
+                            <input type="checkbox">
+                            Esta passagem possui mobilidade reduzida
+                        </label>
+                    </form>
+                </section>
+    
+                <section class="resumo">
+                    <h2>Resumo</h2>
+                    <p>Valor das passagens <span>R$ 100,00</span></p>
+                    <p>Impostos e taxas <span>R$ 0,00</span></p>
+                    <p>Seguro <span>R$ 0,00</span></p>
+                </section>
+    
+                <section class="pagamento">
+                    <h2>Escolha a forma de pagamento</h2>
+                    <div class="opcoes-pagamento">
+                        <button class="cartao">Cartão de crédito</button>
+                        <button class="pix">Pix</button>
+                        <button class="boleto">Boleto</button>
+                    </div>
+                    <form class="dados-cartao">
+                        <input type="text" placeholder="Número do cartão">
+                        <input type="text" placeholder="Nome do titular">
+                        <input type="text" placeholder="Validade">
+                        <input type="text" placeholder="CVV">
+                        <input type="text" placeholder="CPF">
+                        <input type="date" placeholder="Data de nascimento">
+                        <input type="email" placeholder="E-mail">
+                        <div class="total">Total: <strong>R$ 110,00</strong></div>
+                    </form>
+                </section>
+    
+                <section class="informacoes-adicionais">
+                    <div class="pagamento-seguro">
+                        <img src="seguro.png" alt="Pagamento Seguro">
+                        <p>Pagamento seguro <br> Utilizamos os métodos eficazes e seguros para manter a segurança dos seus dados.</p>
+                    </div>
+                    <div class="cancelamento">
+                        <img src="cancelamento.png" alt="Cancelamento">
+                        <p>Cancele quando quiser <br> Mudou de ideia? Cancele sua viagem em até 30 dias.</p>
+                    </div>
+                </section>
+                
+            </div>
+            <footer>
+                <a href="./concluido.html"><button class="confirmar">Confirmar</button></a>
+                <p>Ao confirmar a compra eu concordo com os <a href="#">termos de uso</a> e <a href="#">políticas de privacidade</a>.</p>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>

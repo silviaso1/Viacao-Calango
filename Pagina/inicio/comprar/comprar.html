@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprar Passagem</title>
+    <link rel="stylesheet" href="comprar-passagem.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo Viação Calango">
+            <h1>Viação Calango</h1>
+        </div>
+        <button>Entrar</button>
+    </header>
+    <main>
+        <section class="compra-passagem">
+            <div class="filtro-datas">
+                <label><input type="radio" name="tipo-viagem" checked> Somente ida</label>
+                <label><input type="radio" name="tipo-viagem"> Ida e volta</label>
+                <div class="inputs-destino">
+                    <input type="text" placeholder="Rio de Janeiro - RJ">
+                    <input type="text" placeholder="São Paulo - SP">
+                    <input type="date">
+                    <input type="date">
+                </div>
+            </div>
+            <div class="opcoes-ordenacao">
+                <p>Ordenar por:</p>
+                <button>Menor preço</button>
+                <button>Tempo de viagem</button>
+            </div>
+            <div class="lista-passagens">
+                <div class="passagem">
+                    <p class="tipo">2 poltronas livres<br>Semi-leito</p>
+                    <div class="info-horario">
+                        <p>00:05</p>
+                        <img src="bus-icon.png" alt="Ícone de ônibus">
+                        <p>06:35</p>
+                    </div>
+                    <p class="duracao">6h 30m</p>
+                    <p class="preco">R$100,00</p>
+                    <button class="selecionar">Selecionar</button>
+                </div>
+                <!-- Adicione mais passagens conforme necessário -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <!-- Conteúdo do rodapé -->
+    </footer>
+</body>
+</html>

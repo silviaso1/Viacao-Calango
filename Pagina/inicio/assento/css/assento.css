@@ -1,0 +1,19 @@
+.selecionar-assento .mapa-assentos {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 5px;
+  margin-bottom: 20px;
+}
+.selecionar-assento .mapa-assentos div {
+  width: 30px;
+  height: 30px;
+  background-color: #ddd;
+  border-radius: 4px;
+}
+.selecionar-assento button {
+  background-color: #ffa500;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}/*# sourceMappingURL=assento.css.map */

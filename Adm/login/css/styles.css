@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: url("fundo-noturno.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+header .logo {
+  display: flex;
+  align-items: center;
+}
+header .logo img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+header .logo h1 {
+  font-size: 24px;
+}
+header .link-funcionario {
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.login-box {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  border-radius: 10px;
+  border: 2px solid #00f;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+.login-box .icon {
+  margin-bottom: 10px;
+}
+.login-box .icon img {
+  width: 50px;
+  height: 50px;
+}
+.login-box h2 {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+.login-box form {
+  display: flex;
+  flex-direction: column;
+}
+.login-box form input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+.login-box form .options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+.login-box form .options a {
+  color: #f00;
+  text-decoration: none;
+}
+.login-box form button {
+  padding: 10px;
+  background-color: #800080;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.login-box form button:hover {
+  background-color: #5a005a;
+}/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,226 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+
+    img {
+        max-width: 150px;
+    }
+}
+
+main {
+    .dados-passageiro, .resumo, .pagamento, .informacoes-adicionais {
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+
+        h2 {
+            font-size: 18px;
+            color: #1e3a5f;
+            margin-bottom: 10px;
+        }
+
+        .informacoes-viagem {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 14px;
+            margin-bottom: 10px;
+
+            p {
+                margin: 5px 0;
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+
+            input[type="text"], input[type="date"], input[type="email"] {
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+                input[type="checkbox"] {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+
+    .resumo p {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        margin: 8px 0;
+    }
+
+    .pagamento {
+        .opcoes-pagamento {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+
+            button {
+                flex: 1;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: #f0f0f0;
+
+                &.cartao {
+                    background-color: #e0e8f9;
+                    border-color: #1e3a5f;
+                }
+            }
+        }
+
+        .dados-cartao {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+
+            .total {
+                grid-column: span 2;
+                font-weight: bold;
+                text-align: right;
+            }
+        }
+    }
+
+    .informacoes-adicionais {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+
+        div {
+            display: flex;
+            align-items: center;
+
+            img {
+                width: 30px;
+                height: 30px;
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+footer {
+    text-align: center;
+
+    .confirmar {
+        width: 100%;
+        padding: 12px;
+        background-color: #f57c00;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 12px;
+        color: #666;
+
+        a {
+            color: #1e3a5f;
+            text-decoration: none;
+        }
+    }
+}
+
+/* Estilos para a página de confirmação de reserva */
+.confirmacao {
+    background-color: #1e3a5f;
+    color: #fff;
+
+    .mensagem {
+        text-align: center;
+        padding: 40px;
+
+        img {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    }
+
+    .icones-sociais, .app-stores {
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+
+        img {
+            width: 30px;
+            margin: 0 10px;
+        }
+    }
+
+    footer {
+        padding: 20px;
+        text-align: center;
+        color: #fff;
+        background-color: #1e3a5f;
+
+        img {
+            max-width: 120px;
+            margin: 10px 5px;
+        }
+
+        .icones-sociais, .app-stores {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+
+            img {
+                width: 30px;
+                margin: 0 10px;
+            }
+        }
+
+        p {
+            font-size: 12px;
+            color: #ddd;
+            margin-top: 10px;
+        }
+    }
+}

@@ -1,0 +1,49 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: url("../img/BG.png");
+  background-size: cover;
+  color: #333;
+}
+
+* {
+  margin: 0;
+}
+
+.acessar {
+  background-color: #EAEAEA;
+  width: 45%;
+}
+
+.container {
+  border-radius: 8px;
+  text-align: center;
+}
+.container header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 78px;
+  background-color: white;
+}
+.container form {
+  display: flex;
+  flex-direction: column;
+}
+.container form label {
+  text-align: left;
+  margin-top: 10px;
+}
+.container form input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.container form button {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}/*# sourceMappingURL=acesso.css.map */
