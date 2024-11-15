@@ -1,9 +1,10 @@
+@charset "UTF-8";
 .footer {
   background-color: #000080;
   color: #fff;
   padding: 20px;
   margin-top: 30px;
-  width: 100% !important;
+  width: 100%;
 }
 .footer .footer-sections {
   display: flex;
@@ -120,15 +121,46 @@ button {
   gap: 20px;
 }
 .opcoes-viagem .destinos .destino {
+  position: relative;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
+  transition: transform 0.3s, background-color 0.3s;
+  cursor: pointer;
+  /* Link "Comprar Agora" inicialmente invisível */
 }
 .opcoes-viagem .destinos .destino img {
   width: 100%;
   height: auto;
+  transition: opacity 0.3s;
 }
 .opcoes-viagem .destinos .destino p {
   margin: 10px;
   color: #333;
+  transition: opacity 0.3s;
+}
+.opcoes-viagem .destinos .destino .comprar-link {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  opacity: 0; /* Inicialmente invisível */
+  transition: opacity 0.3s;
+}
+.opcoes-viagem .destinos .destino:hover {
+  background-color: #002776; /* O fundo fica azul */
+  transform: scale(1.05);
+}
+.opcoes-viagem .destinos .destino:hover img {
+  opacity: 0; /* A imagem desaparece */
+}
+.opcoes-viagem .destinos .destino:hover p {
+  opacity: 0; /* O texto também desaparece */
+}
+.opcoes-viagem .destinos .destino:hover .comprar-link {
+  opacity: 1; /* O link "Comprar Agora" aparece */
 }/*# sourceMappingURL=opcoes.css.map */

@@ -5,25 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Web</title>
     <link rel="stylesheet" href="./css/portal.css">
+
 </head>
 <body>
     <div class="container">
         <header>
             <img src="../exports/logo.png" alt="Logo Viação Galango">
-            <button>Entrar</button>
+            <button><a href="../../Cadastro e login/login/login.html">Entrar</a></button>
         </header>
         <main>
             <section class="banner">
-                <div>
+                <div class="compre">
                 <h2>Compre sua passagem de ônibus!</h2>
                 <p>Reserve fácil, com segurança e viaje feliz.</p>
                 </div>
                 <section class="form">
                     <form>
-                        <input type="text" placeholder="Digite sua origem">
-                        <input type="text" placeholder="Digite seu destino">
-                        <input type="date">
-                        <button type="submit">Encontre sua passagem</button>
+                        <div class="top">
+                            <input type="text" placeholder="Digite sua origem">
+                            <input type="text" placeholder="Digite seu destino">
+                        </div>
+                        <div class="data">
+                            <p>Data de ida</p>
+                        <input type="date" placeholder="Data de ida">
+                        <p>Data de volta</p>
+                        <input type="date" placeholder="Data de volta">
+                        </div>
+                        <button><a href="../viagem/opcoes.html">Compre agora</a></button>
+
+
                     </form>
                 </section>
             </section>
@@ -45,18 +55,22 @@
                 <h2>O que estão elogiando na Viação Calango</h2>
                 <div class="elogiando-items">
                     <div class="item">
+                        <img src="./img/🦆 icon _euro_.png" alt="">
                         <h3>Passagens com desconto</h3>
                         <p>Economia garantida em nossas passagens exclusivas.</p>
                     </div>
                     <div class="item">
+                        <img src="./img/Medalha.png" alt="">
                         <h3>Garantia de Qualidade</h3>
                         <p>Uma viagem de qualidade assegurada em todos os detalhes.</p>
                     </div>
                     <div class="item">
+                        <img src="./img/🦆 icon _yoga_.png" alt="">
                         <h3>Segurança e Conforto</h3>
                         <p>Viagens seguras e confortáveis em nossos ônibus bem-mantidos.</p>
                     </div>
                     <div class="item">
+                        <img src="./img/🦆 icon _globe_.png" alt="">
                         <h3>Compre de onde quiser</h3>
                         <p>Facilidade de compra, onde e quando quiser.</p>
                     </div>
@@ -106,7 +120,7 @@
                         </ul>
                     </div>
                 </div>
-                <footer>
+               
 
                     <p>&copy; 2023 Copyright - Todos os direitos reservados.</p>
                     
@@ -119,7 +133,7 @@
                         <img src="../exports/image 5.png" alt="Google Play">
                         <img src="../exports/image 6.png" alt="App Store">
                     </div>
-                </footer>
+              
             </footer>
     </div>
 </body>
