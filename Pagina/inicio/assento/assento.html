@@ -3,24 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selecionar Assento</title>
+    <title>Seleção de Assentos - Viação Calango</title>
     <link rel="stylesheet" href="./css/assento.css">
+    <script src="./js/assento.js"></script>
+   
 </head>
 <body>
     <header>
-        <!-- Mesmo cabeçalho que a página anterior -->
+        <img src="../exports/logo.png" alt="Logo Viação Galango">
+        <button><a href="../../Cadastro e login/login/login.html">Entrar</a></button>
     </header>
-    <main>
-        <section class="selecionar-assento">
-            <h2>Escolher poltrona para ida e volta</h2>
-            <div class="mapa-assentos">
-                <!-- Adicione a estrutura do mapa de assentos -->
+    <div class="container">
+       
+        <p class="selection-title">Escolher poltrona para ida e volta para <strong>São Paulo - SP</strong></p>
+        <div class="bus-image">
+            <img src="./img/img.png" alt="Ônibus" style="width: 100%; border-radius: 8px;">
+            <div class="seats">
+                <!-- Adicione os quadrados dos assentos -->
+                <!-- Cada div representa um assento -->
+                <!-- Assentos marcados como "ocupados" devem ter a classe "occupied" -->
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat occupied"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat occupied"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat occupied"></div>
+                <div class="seat occupied"></div>
+                <div class="seat occupied"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat bottom"></div>
+                <div class="seat bottom"></div>
+                <div class="seat bottom"></div>
+                <div class="seat bottom"></div>
+                <div class="seat bottom"></div>
+                <div class="seat bottom"></div>
+                <div class="seat bottom"></div>
+                <div class="seat bottom"></div>
+                <div class="seat bottom"></div>
+                <div class="seat bottom"></div>
+                <div class="seat "></div>
+                <div class="seat "></div>
+                <div class="seat"></div>
+                <div class="seat "></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat "></div>
+                <!-- Continue adicionando assentos conforme necessário -->
             </div>
-            <button>Reservar</button>
-        </section>
-    </main>
-    <footer>
-        <!-- Conteúdo do rodapé -->
+        </div>
+        <div class="legend">
+            <div><span class="available"></span> Disponível</div>
+            <div><span class="selected"></span> Selecionado</div>
+            <div><span class="occupied"></span> Ocupado</div>
+        </div>
+        <button class="reserve-button">Reservar</button>
+    </div>
+    <footer class="footer">
+        <div class="footer-sections">
+            <div class="footer-column">
+                <h3>Viação Calango</h3>
+                <ul>
+                    <li><a href="#">Sobre a Viação Calango</a></li>
+                    <li><a href="#">Imprensa</a></li>
+                    <li><a href="#">Baixe o app</a></li>
+                    <li><a href="#">Trabalhe na Viação Calango</a></li>
+                    <li><a href="#">Seja um parceiro</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Links úteis</h3>
+                <ul>
+                    <li><a href="#">Destinos</a></li>
+                    <li><a href="#">Rodoviárias</a></li>
+                    <li><a href="#">Viagens</a></li>
+                    <li><a href="#">Passagens promocionais</a></li>
+                    <li><a href="#">Destinos interconectados</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Guias de viagem</h3>
+                <ul>
+                    <li><a href="#">Guia de destino Rio de Janeiro</a></li>
+                    <li><a href="#">Guia de destino Maranhão</a></li>
+                    <li><a href="#">Guia de destino Paraíba</a></li>
+                    <li><a href="#">Guia de destino Pernambuco</a></li>
+                    <li><a href="#">Guia de destino Paraná</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Informações</h3>
+                <ul>
+                    <li><a href="#">Dúvidas frequentes</a></li>
+                    <li><a href="#">Políticas de privacidade</a></li>
+                    <li><a href="#">Canal de transparência</a></li>
+                    <li><a href="#">Termos de uso</a></li>
+                </ul>
+            </div>
+        </div>
+            <p>&copy; 2023 Copyright - Todos os direitos reservados.</p>
+            
+            <div class="app-stores">
+                <div class="icones-sociais">
+                    <i class="bi bi-instagram"></i>
+                    <i class="bi bi-twitter-x"></i>
+                    <i class="bi bi-facebook"></i>
+                </div>
+                <img src="../exports/image 5.png" alt="Google Play">
+                <img src="../exports/image 6.png" alt="App Store">
+            </div>
+               
     </footer>
+    
 </body>
 </html>

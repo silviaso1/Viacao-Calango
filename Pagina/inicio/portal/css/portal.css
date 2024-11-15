@@ -3,7 +3,7 @@
   color: #fff;
   padding: 20px;
   margin-top: 30px;
-  width: 100% !important;
+  width: 100%;
 }
 .footer .footer-sections {
   display: flex;
@@ -104,34 +104,67 @@ body {
 .container .banner {
   text-align: center;
   background-image: url("../img/imagem garagem.png");
-  width: 100%;
-  height: 300px;
+  width: 95%;
+  height: 70vh;
   color: white;
   padding: 30px;
   border-radius: 8px;
   display: flex;
 }
+.container .banner h2 {
+  font-size: 3rem;
+  margin-left: 75px;
+}
+.container .banner .compre {
+  width: 80%;
+}
 .container .banner .form {
   background-color: white;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  align-items: center;
+}
+.container .banner .data {
+  display: flex;
+}
+.container .banner .top {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+.container .banner .top input {
+  width: 85%;
+  height: 50px;
+  margin-bottom: 10px;
 }
 .container .banner form {
-  display: flex;
   justify-content: center;
   margin-top: 20px;
 }
+.container .banner form p {
+  color: black;
+  font-size: smaller;
+}
 .container .banner form input {
-  margin-right: 10px;
+  margin-right: 25px;
   padding: 10px;
-  border-radius: 5px;
+  margin-left: 25px;
+  border-radius: 15px;
   border: 1px solid #ccc;
+  width: 150px;
+  height: 50px;
 }
 .container .banner form button {
-  background-color: #333;
+  background-color: #0E0C5F;
   color: white;
   padding: 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
+  width: 90%;
+  margin-top: 45px;
 }
 .container .destinos {
   display: flex;
