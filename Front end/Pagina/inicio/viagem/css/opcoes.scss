@@ -1,0 +1,85 @@
+@import "../../exports/footer.scss";
+@import "../../exports/header.scss";
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    background-color: #ffa500;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.opcoes-viagem {
+    text-align: center;
+    margin: 20px 0;
+
+    h2 {
+        color: #002776;
+    }
+
+    .destinos {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 22px;
+
+        .destino {
+            position: relative;
+           
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, background-color 0.3s;
+            cursor: pointer;
+
+            img {
+                width: 100%;
+                height: auto;
+                transition: opacity 0.3s;
+            }
+
+            p {
+                margin: 10px;
+                color: #333;
+                transition: opacity 0.3s;
+            }
+
+            /* Link "Comprar Agora" inicialmente invisível */
+            .comprar-link {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-decoration: none;
+                color: #fff;
+                font-size: 1.5rem;
+                font-weight: bold;
+                opacity: 0; /* Inicialmente invisível */
+                transition: opacity 0.3s;
+            }
+
+            &:hover {
+                img {
+                    opacity: 0; /* A imagem desaparece */
+                }
+
+                p {
+                    opacity: 0; /* O texto também desaparece */
+                }
+
+                .comprar-link {
+                    opacity: 1; /* O link "Comprar Agora" aparece */
+                }
+
+                background-color: #002776; /* O fundo fica azul */
+                transform: scale(1.05);
+            }
+        }
+    }
+}

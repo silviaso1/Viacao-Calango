@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Assentos - Viação Calango</title>
+    <link rel="stylesheet" href="./css/assento.css">
+</head>
+<body>
+    <header>
+        <img src="../exports/logo.png" alt="Logo Viação Calango">
+        <button><a href="../../Cadastro e login/login/login.html">Entrar</a></button>
+    </header>
+    <div class="container">
+        <p class="selection-title">Escolher poltrona para ida e volta para <strong>São Paulo - SP</strong></p>
+        <div class="bus-image">
+            <img src="./img/img.png" alt="Ônibus" style="width: 70%; border-radius: 8px;">
+            <div class="seats">
+                <div class="seat a1" data-seat="a1"></div>
+                <div class="seat a2" data-seat="a2"></div>
+                <div class="seat occupied a3" data-seat="a3"></div>
+                <div class="seat a4" data-seat="a4"></div>
+                <div class="seat a5" data-seat="a5"></div>
+                <div class="seat a6" data-seat="a6"></div>
+                <div class="seat a7" data-seat="a7"></div>
+                <div class="seat occupied a8" data-seat="a8"></div>
+                <div class="seat a9" data-seat="a9"></div>
+                <div class="seat a10" data-seat="a10"></div>
+                <div class="seat a11" data-seat="a11"></div>
+                <div class="seat b1" data-seat="b1"></div>
+                <div class="seat b2" data-seat="b2"></div>
+                <div class="seat b3" data-seat="b3"></div>
+                <div class="seat b4" data-seat="b4"></div>
+                <div class="seat occupied b5" data-seat="b5"></div>
+                <div class="seat occupied b6" data-seat="b6"></div>
+                <div class="seat occupied b7" data-seat="b7"></div>
+                <div class="seat b8" data-seat="b8"></div>
+                <div class="seat b9" data-seat="b9"></div>
+                <div class="seat bottom b10" data-seat="b10"></div>
+                <div class="seat bottom c1" data-seat="c1"></div>
+                <div class="seat bottom c2" data-seat="c2"></div>
+                <div class="seat bottom c3" data-seat="c3"></div>
+                <div class="seat bottom c4" data-seat="c4"></div>
+                <div class="seat bottom c5" data-seat="c5"></div>
+                <div class="seat bottom c6" data-seat="c6"></div>
+                <div class="seat bottom c7" data-seat="c7"></div>
+                <div class="seat bottom c8" data-seat="c8"></div>
+                <div class="seat bottom c9" data-seat="c9"></div>
+                <div class="seat d1" data-seat="d1"></div>
+                <div class="seat d2" data-seat="d2"></div>
+                <div class="seat d3" data-seat="d3"></div>
+                <div class="seat d4" data-seat="d4"></div>
+                <div class="seat d5" data-seat="d5"></div>
+                <div class="seat d6" data-seat="d6"></div>
+                <div class="seat d7" data-seat="d7"></div>
+                <div class="seat d8" data-seat="d8"></div>
+                <div class="seat d9" data-seat="d9"></div>
+                <div class="seat d10" data-seat="d10"></div>
+            </div>
+        </div>
+        <div class="legend">
+            <div><span class="available"></span> Disponível</div>
+            <div><span class="selected"></span> Selecionado</div>
+            <div><span class="occupied"></span> Ocupado</div>
+            <button id="btnReservar">Reservar</button>
+        </div>   
+    </div>
+
+    <script src="./js/requisicao.js"></script>
+</body>
+</html>

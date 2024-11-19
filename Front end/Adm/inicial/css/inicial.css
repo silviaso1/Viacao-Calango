@@ -1,0 +1,186 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom, #0a0014, #1e0033); /* Fundo principal escuro com gradiente */
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.landing-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  position: relative;
+}
+
+/* Camada de sobreposição translúcida */
+.landing-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Sobreposição preta translúcida */
+  border-left: 3px solid #6a1b9a; /* Borda fina com toque roxo */
+  z-index: 1; /* Garante que fique abaixo do conteúdo */
+}
+
+/* Configuração do conteúdo principal */
+header,
+main,
+footer {
+  position: relative;
+  z-index: 2; /* Garante que o conteúdo fique acima da sobreposição */
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+header .logo h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+header .logo span {
+  color: #9c27b0; /* Destaque roxo */
+}
+
+header nav a {
+  margin-left: 20px;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+header nav a:hover {
+  color: #9c27b0;
+  text-shadow: 0 0 5px #9c27b0;
+}
+
+main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: calc(100% - 100px); /* Ajuste para o header e footer */
+}
+
+.welcome-section {
+  text-align: left;
+  width: 50%;
+  animation: fadeInLeft 1s ease-in-out;
+}
+
+.welcome-section h1 {
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  background: linear-gradient(to right, #9c27b0, #e91e63);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.welcome-section p {
+  font-size: 1.3rem;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.explore-btn {
+  padding: 10px 20px;
+  background: #9c27b0;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
+}
+
+.explore-btn:hover {
+  background: #7b1fa2;
+  box-shadow: 0 10px 20px rgba(123, 31, 162, 0.6);
+  transform: translateY(-3px);
+}
+
+.profile-image {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  animation: fadeInRight 1s ease-in-out;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+footer {
+  padding: 20px;
+}
+
+.logout-btn {
+  background: #e91e63;
+  color: #fff;
+  border: none;
+  padding: 10px 30px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  background: #c2185b;
+  transform: translateY(-2px);
+}
+
+/* Animações */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}/*# sourceMappingURL=inicial.css.map */

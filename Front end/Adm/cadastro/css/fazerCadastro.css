@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(135deg, #3e5f91 0%, #e67e22 100%);
+  color: #ecf0f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+  background: #2d3436;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  gap: 30px;
+}
+
+.cadastro {
+  flex: 1;
+  padding: 20px;
+  background: linear-gradient(45deg, #3e5f91 0%, #e67e22 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.cadastro h2 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+.cadastro .form-cadastro {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 15px;
+}
+.cadastro .form-cadastro input {
+  padding: 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  background: #34495e;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+.cadastro .form-cadastro input:focus {
+  box-shadow: 0 0 5px 2px #c0392b;
+}
+.cadastro .form-cadastro input::-moz-placeholder {
+  color: #bdc3c7;
+}
+.cadastro .form-cadastro input::placeholder {
+  color: #bdc3c7;
+}
+.cadastro .form-cadastro button {
+  background: #c0392b;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease-in-out;
+}
+.cadastro .form-cadastro button:hover {
+  background: #962d22;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.cadastro .form-cadastro button:active {
+  background: #81261d;
+}
+
+.lista-cadastrados {
+  flex: 1;
+  padding: 20px;
+  background: linear-gradient(45deg, #e67e22 0%, #3e5f91 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: auto;
+}
+.lista-cadastrados h2 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+.lista-cadastrados ul {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.lista-cadastrados ul li {
+  background: #34495e;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  color: #ecf0f1;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+}
+.lista-cadastrados ul li:hover {
+  background: #c0392b;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+}
+.lista-cadastrados ul li:active {
+  background: #ab3326;
+}/*# sourceMappingURL=fazerCadastro.css.map */

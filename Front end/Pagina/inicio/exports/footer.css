@@ -1,0 +1,67 @@
+.footer {
+  background-color: #000080;
+  color: #fff;
+  width: 100%;
+}
+.footer .footer-sections {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.footer .footer-sections .footer-column {
+  flex: 1;
+  margin: 0 10px;
+}
+.footer .footer-sections .footer-column h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #00bfff;
+}
+.footer .footer-sections .footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+.footer .footer-sections .footer-column ul li {
+  margin-bottom: 5px;
+}
+.footer .footer-sections .footer-column ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+.footer .footer-sections .footer-column ul li a:hover {
+  text-decoration: underline;
+}
+.footer .footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.footer .footer-bottom .footer-logo {
+  display: flex;
+  align-items: center;
+}
+.footer .footer-bottom .footer-logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+.footer .footer-bottom .footer-logo h1 {
+  font-size: 24px;
+}
+.footer .footer-bottom .footer-icons a {
+  margin: 0 5px;
+}
+.footer .footer-bottom .footer-icons a img {
+  width: 24px;
+  height: 24px;
+}
+.footer .footer-bottom .footer-apps a {
+  margin: 0 5px;
+}
+.footer .footer-bottom .footer-apps a img {
+  height: 40px;
+}
+.footer .footer-bottom p {
+  margin-top: 15px;
+  font-size: 14px;
+}/*# sourceMappingURL=footer.css.map */

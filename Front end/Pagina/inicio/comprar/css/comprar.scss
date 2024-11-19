@@ -1,0 +1,170 @@
+@import "../../exports/footer.scss";
+@import "../../exports/header.scss";
+
+body {
+    font-family: 'Roboto', sans-serif; /* Fonte mais moderna */
+    background-color: #F1F2F6;
+    margin: 0;
+    padding: 0;
+
+    
+}
+
+.container {
+    background-color: #F1F2F6;
+    border-radius: 10px;
+    padding-bottom: 30px;
+    
+}
+
+.search-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 30px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+
+    label {
+        font-size: 16px;
+        color: #333;
+    }
+
+    input[type="radio"] {
+        margin-right: 8px;
+        background-color: white;
+    }
+
+    .search-box {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        margin-top: 20px;
+
+        div {
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            input {
+                border: none;
+                outline: none;
+                height: 45px;
+                width: 230px;
+                font-size: 16px;
+                color: #555;
+                padding-left: 10px;
+            }
+
+            span {
+                font-size: 20px;
+                color: #007BFF;
+            }
+        }
+    }
+}
+
+.filter-options {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-top: 25px;
+    color: #0E0C5F;
+    margin-left: 90px;
+
+    button {
+        border: 1px solid #007BFF;
+        background-color: #fff;
+        padding: 8px 15px;
+        border-radius: 20px;
+        cursor: pointer;
+        color: #007BFF;
+        font-size: 14px;
+
+        &:hover {
+            background-color: #e6f0ff;
+        }
+    }
+}
+
+.journey-card {
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: #fff;
+    height: 140px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    a{
+        text-decoration: none;
+        color: white;
+    }
+
+    a:active, a:focus {
+        color: inherit; 
+        outline: none;
+    }
+
+    &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .journey-info {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+    }
+
+    .arrow-icon {
+        font-size: 50px;
+        color: #007BFF;
+    }
+
+    .price {
+        font-size: 22px;
+        font-weight: bold;
+        color: #ff6600;
+    }
+
+    .select-button {
+        background-color: #007BFF;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #0056b3;
+        }
+    }
+}
+
+#journeys {
+    padding: 60px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer{
+    margin-bottom: -30px;
+}

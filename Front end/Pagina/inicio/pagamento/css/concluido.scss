@@ -1,0 +1,111 @@
+@import "../../exports/header.scss";
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff; // Cor de fundo semelhante à imagem
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+}
+
+
+main {
+    flex: 1; // Permite que o main ocupe a altura máxima disponível
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 390px;
+    background-color: #0E0C5F;
+
+    .mensagem {
+        display: flex;
+        width: 100%; // Ocupa a largura total
+        max-width: 1200px; // Limita a largura máxima
+        align-items: center;
+        justify-content: space-between; // Espaça o ícone e o texto
+        padding: 40px;
+
+        div:first-child {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 150px; // Tamanho do ícone
+            }
+        }
+
+        div:last-child {
+            text-align: left;
+
+            h1 {
+                font-size: 32px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            p {
+                font-size: 16px;
+                line-height: 1.5;
+                margin: 5px 0;
+            }
+        }
+    }
+}
+footer {
+    background-color: #ffffff;
+    color: #1e2067;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 5px solid #1e2067;
+
+    .logo {
+        display: flex;
+        align-items: center;
+
+        img {
+            max-width: 50px;
+            margin-right: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e2067;
+        }
+    }
+
+    .icones-sociais {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        img {
+            width: 25px;
+            height: 25px;
+        }
+    }
+
+    .app-stores {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img {
+            height: 40px;
+        }
+    }
+
+    p {
+        font-size: 12px;
+        color: #333;
+        margin-top: 10px;
+        text-align: center;
+        flex-basis: 100%; // Faz o texto ocupar a largura total
+    }
+
+}
