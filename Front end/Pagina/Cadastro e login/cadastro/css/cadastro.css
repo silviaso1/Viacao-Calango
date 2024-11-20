@@ -4,7 +4,7 @@ header {
   align-items: center;
   height: 78px;
   background-color: rgb(255, 255, 255);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); /* sombra leve */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
 }
 header img {
   width: 13%;
@@ -20,13 +20,16 @@ header button {
   margin-right: 30px;
   color: #0E0C5F;
 }
+header button a {
+  text-decoration: none;
+}
 
 body {
   font-family: Arial, sans-serif;
   background-image: url("../img/BG (1).png");
   background-size: cover;
   color: #333;
-  height: 800px;
+  height: 100vh;
 }
 
 * {
@@ -39,7 +42,6 @@ main {
   align-items: center;
   text-align: center;
   width: 100%;
-  height: 100vh;
 }
 
 .acessar {
@@ -51,9 +53,10 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 4%;
 }
 .acessar img {
-  width: 75%;
+  width: 82%;
   margin-bottom: 10px;
 }
 
@@ -73,10 +76,18 @@ main {
   width: 320px;
 }
 .container form button {
-  background-color: #333;
+  background-color: #736be7;
   color: white;
   padding: 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+.container form button a {
+  text-decoration: none;
+  color: white;
+}
+.container form button a:active, .container form button a:focus {
+  color: inherit;
+  outline: none;
 }/*# sourceMappingURL=cadastro.css.map */

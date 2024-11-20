@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busca de Passagens</title>
+    <title>Comprar Passagens</title>
     <link rel="stylesheet" href="./css/comprar.css">
-    <script src="./js/comprar.js" defer></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const destinationField = document.getElementById('destination');
+            const savedDestination = localStorage.getItem('destination');
+
+            // Atualiza o placeholder do campo "Destino"
+            if (savedDestination) {
+                destinationField.placeholder = savedDestination;
+                destinationField.disabled = true; // Desativa edição do campo
+            } else {
+                destinationField.placeholder = "Selecione um destino";
+            }
+        });
+    </script>
+    <script src="./js/comprar.js"></script>
 </head>
 <body>
-    <div class="container">
-        <header>
+    <header>
+        <a href="../portal/portal.html">
             <img src="../exports/logo.png" alt="Logo Viação Galango">
-            <button><a href="../../Cadastro e login/login/login.html">Entrar</a></button>
-        </header>
+        </a>
+        <button><a href="../../Cadastro e login/login/login.html">Entrar</a></button>
+    </header>
+    <main>
         <div class="search-section">
             <div>
                 <label>
@@ -24,10 +39,20 @@
                 </label>
             </div>
             <div class="search-box">
-                <div><span>🡱</span> <input type="text" placeholder="Rio de Janeiro - RJ" id="departure" disabled></div>
-                <div><span><i class="bi bi-pin-fill"></i></span> <input type="text" placeholder="São Paulo - SP" id="destination" disabled></div>
-                <div><input type="date" value="2024-07-04"></div>
-                <div id="returnDate" style="display: none;"><input type="date" value="2024-07-11"></div>
+                <div>
+                    <span>🡱</span> 
+                    <input type="text" placeholder="Rio de Janeiro - RJ" id="departure" disabled>
+                </div>
+                <div>
+                    <span><i class="bi bi-pin-fill"></i></span>
+                    <input type="text" placeholder="São Paulo - SP" id="destination" disabled>
+                </div>
+                <div>
+                    <input type="date" value="2024-11-26">
+                </div>
+                <div id="returnDate" style="display: none;">
+                    <input type="date" value="2024-11-27">
+                </div>
             </div>
         </div>
         <div class="filter-options">
@@ -36,60 +61,81 @@
             <button onclick="filterByDuration()">Tempo de viagem</button>
         </div>
         <div id="journeys">
-            <!-- Viagem 1 -->
-            <div class="journey-card" data-price="150" data-duration="390">
+            <!-- Journey Cards -->
+            <div class="journey-card" data-price="50" data-duration="360">
                 <p>Semi-leito</p>
                 <div class="flex">
                     <div class="journey-info">
-                        <p>00:05</p>
+                        <p>05:00</p>
                         <div class="arrow-icon">→</div>
-                        <p>06:35</p>
-                        <p class="price">R$150,00</p>
+                        <p>11:00</p>
+                        <p class="price">R$50,00</p>
                     </div>
-                    <button class="select-button" onclick="selectJourney(this)">Selecionar</button>
+                    <button class="select-button"><a href="../assento/assento.html">Selecionar</a></button>
                 </div>
             </div>
-            <!-- Viagem 2 -->
-            <div class="journey-card" data-price="200" data-duration="390">
-                <p>Leito-cama</p>
+            <div class="journey-card" data-price="100" data-duration="400">
+                <p>Leito</p>
                 <div class="flex">
                     <div class="journey-info">
-                        <p>00:05</p>
+                        <p>06:00</p>
                         <div class="arrow-icon">→</div>
-                        <p>06:35</p>
-                        <p class="price">R$200,00</p>
-                    </div>
-                    <button class="select-button" onclick="selectJourney(this)">Selecionar</button>
-                </div>
-            </div>
-            <!-- Viagem 3 -->
-            <div class="journey-card" data-price="100" data-duration="375">
-                <p>Convencional</p>
-                <div class="flex">
-                    <div class="journey-info">
-                        <p>00:05</p>
-                        <div class="arrow-icon">→</div>
-                        <p>06:20</p>
+                        <p>12:40</p>
                         <p class="price">R$100,00</p>
                     </div>
-                    <button class="select-button" onclick="selectJourney(this)">Selecionar</button>
+                    <button class="select-button"><a href="../assento/assento.html">Selecionar</a></button>
                 </div>
             </div>
-            <!-- Viagem 4 -->
-            <div class="journey-card" data-price="300" data-duration="240">
-                <p>Cama</p>
+            <div class="journey-card" data-price="150" data-duration="450">
+                <p>Executivo</p>
                 <div class="flex">
                     <div class="journey-info">
-                        <p>01:05</p>
+                        <p>07:30</p>
                         <div class="arrow-icon">→</div>
-                        <p>05:20</p>
-                        <p class="price">R$300,00</p>
+                        <p>15:00</p>
+                        <p class="price">R$150,00</p>
                     </div>
-                    <button class="select-button" onclick="selectJourney(this)">Selecionar</button>
+                    <button class="select-button"><a href="../assento/assento.html">Selecionar</a></button>
+                </div>
+            </div>
+            <div class="journey-card" data-price="75" data-duration="480">
+                <p>Semi-leito</p>
+                <div class="flex">
+                    <div class="journey-info">
+                        <p>08:00</p>
+                        <div class="arrow-icon">→</div>
+                        <p>16:00</p>
+                        <p class="price">R$75,00</p>
+                    </div>
+                    <button class="select-button"><a href="../assento/assento.html">Selecionar</a></button>
+                </div>
+            </div>
+            <div class="journey-card" data-price="200" data-duration="360">
+                <p>Executivo</p>
+                <div class="flex">
+                    <div class="journey-info">
+                        <p>09:00</p>
+                        <div class="arrow-icon">→</div>
+                        <p>15:00</p>
+                        <p class="price">R$200,00</p>
+                    </div>
+                    <button class="select-button"><a href="../assento/assento.html">Selecionar</a></button>
+                </div>
+            </div>
+            <div class="journey-card" data-price="120" data-duration="390">
+                <p>Leito</p>
+                <div class="flex">
+                    <div class="journey-info">
+                        <p>10:00</p>
+                        <div class="arrow-icon">→</div>
+                        <p>16:30</p>
+                        <p class="price">R$120,00</p>
+                    </div>
+                    <button class="select-button"><a href="../assento/assento.html">Selecionar</a></button>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
     <footer class="footer">
         <div class="footer-sections">
             <div class="footer-column">
@@ -132,21 +178,6 @@
                 </ul>
             </div>
         </div>
-        <footer>
-
-            <p>&copy; 2023 Copyright - Todos os direitos reservados.</p>
-            
-            <div class="app-stores">
-                <div class="icones-sociais">
-                    <i class="bi bi-instagram"></i>
-                    <i class="bi bi-twitter-x"></i>
-                    <i class="bi bi-facebook"></i>
-                </div>
-                <img src="../exports/image 5.png" alt="Google Play">
-                <img src="../exports/image 6.png" alt="App Store">
-            </div>
-        </footer>
-               
     </footer>
 </body>
 </html>

@@ -5,7 +5,8 @@ body {
     background-image: url("../img/BG.png");
     background-size: cover;
     color: #333;
-    height: 800px;
+    height: 100vh;
+   
 }
 
 * {
@@ -18,7 +19,7 @@ main {
     align-items: center;
     text-align: center;
     width: 100%;
-    height: 100vh;
+    
 }
 
 .acessar {
@@ -30,9 +31,12 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 5%;
+
+    
 
     img{
-        width: 75%;
+        width: 82%;
         margin-bottom: 10px;
     }
 }
@@ -41,18 +45,42 @@ main {
     border-radius: 8px;
     text-align: center;
 
+    #senha{
+        a{
+            text-decoration: none;
+            color: rgb(209, 15, 15);
+        }
+    
+        a:active, a:focus {
+            color: inherit; 
+            outline: none;
+        }
+    }
+
     .escolha{
         display: flex;
         justify-content: space-between;
         margin-bottom: 20px;
-        margin-top: 5px;
+        margin-top: 15px;
         p{
             font-size: small;
             margin-left: 20px;
+            
         }
         label{
             font-size: small;
         }
+        
+        a{
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+        }
+    
+        a:active, a:focus {
+            color: inherit; 
+            outline: none;
+        }
+        
     }
 
     form {
@@ -68,12 +96,22 @@ main {
         }
 
         button {
-            background-color: #333;
+            background-color: #736be7;
             color: white;
             padding: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+
+            a{
+                text-decoration: none;
+                color: white;
+            }
+        
+            a:active, a:focus {
+                color: inherit; 
+                outline: none;
+            }
         }
     }
 }

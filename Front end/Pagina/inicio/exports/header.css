@@ -19,4 +19,7 @@ header button {
   height: 40px;
   margin-right: 30px;
   color: #0E0C5F;
+}
+header button a {
+  text-decoration: none;
 }/*# sourceMappingURL=header.css.map */

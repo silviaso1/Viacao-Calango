@@ -4,7 +4,7 @@ header {
   align-items: center;
   height: 78px;
   background-color: rgb(255, 255, 255);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); /* sombra leve */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
 }
 header img {
   width: 13%;
@@ -20,6 +20,9 @@ header button {
   margin-right: 30px;
   color: #0E0C5F;
 }
+header button a {
+  text-decoration: none;
+}
 
 body {
   margin: 0;
@@ -29,6 +32,13 @@ body {
   display: flex;
   flex-direction: column;
   max-height: 100vh;
+}
+body header a {
+  text-decoration: none;
+}
+body header img {
+  width: 80%;
+  height: 60px;
 }
 
 main {

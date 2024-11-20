@@ -7,10 +7,12 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 .footer .footer-sections .footer-column {
   flex: 1;
   margin: 0 10px;
+  flex-wrap: wrap;
 }
 .footer .footer-sections .footer-column h3 {
   font-size: 18px;
@@ -65,6 +67,73 @@
   margin-top: 15px;
   font-size: 14px;
 }
+@media (max-width: 768px) {
+  .footer .footer-sections {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer .footer-sections .footer-column {
+    margin: 10px 0;
+  }
+  .footer .footer-sections .footer-column h3 {
+    font-size: 16px;
+  }
+  .footer .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer .footer-bottom .footer-logo {
+    flex-direction: column;
+  }
+  .footer .footer-bottom .footer-logo img {
+    height: 35px;
+  }
+  .footer .footer-bottom .footer-logo h1 {
+    font-size: 20px;
+  }
+  .footer .footer-bottom .footer-icons,
+  .footer .footer-bottom .footer-apps {
+    margin-top: 10px;
+  }
+  .footer .footer-bottom .footer-icons a img,
+  .footer .footer-bottom .footer-apps a img {
+    width: 20px;
+    height: 20px;
+  }
+  .footer .footer-bottom p {
+    margin-top: 10px;
+  }
+}
+@media (max-width: 480px) {
+  .footer .footer-sections {
+    gap: 20px;
+  }
+  .footer .footer-sections .footer-column h3 {
+    font-size: 14px;
+  }
+  .footer .footer-sections .footer-column ul li {
+    font-size: 12px;
+  }
+  .footer .footer-sections .footer-column ul li a {
+    font-size: 12px;
+  }
+  .footer .footer-bottom .footer-logo img {
+    height: 30px;
+  }
+  .footer .footer-bottom .footer-logo h1 {
+    font-size: 18px;
+  }
+  .footer .footer-bottom .footer-icons a img,
+  .footer .footer-bottom .footer-apps a img {
+    width: 18px;
+    height: 18px;
+  }
+  .footer .footer-bottom p {
+    font-size: 12px;
+  }
+}
 
 header {
   display: flex;
@@ -72,7 +141,7 @@ header {
   align-items: center;
   height: 78px;
   background-color: rgb(255, 255, 255);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); /* sombra leve */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
 }
 header img {
   width: 13%;
@@ -88,12 +157,22 @@ header button {
   margin-right: 30px;
   color: #0E0C5F;
 }
+header button a {
+  text-decoration: none;
+}
 
 body {
   font-family: "Roboto", sans-serif; /* Fonte mais moderna */
   background-color: #F1F2F6;
   margin: 0;
   padding: 0;
+}
+body header a {
+  text-decoration: none;
+}
+body header img {
+  width: 80%;
+  height: 60px;
 }
 
 .container {
@@ -148,6 +227,14 @@ body {
 .search-section .search-box div span {
   font-size: 20px;
   color: #007BFF;
+}
+@media (max-width: 768px) {
+  .search-section .search-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .filter-options {
@@ -228,12 +315,89 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
+@media (max-width: 768px) {
+  #journeys {
+    grid-template-columns: 1fr; /* Apenas uma coluna */
+    padding: 30px 40px;
+  }
+}
+@media (max-width: 480px) {
+  #journeys {
+    padding: 20px;
+    gap: 15px;
+  }
+}
 
 .flex {
   display: flex;
   justify-content: space-between;
 }
+@media (max-width: 480px) {
+  .flex {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
 
 footer {
   margin-bottom: -30px;
+}
+
+@media (max-width: 768px) {
+  .filter-options {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 0;
+    gap: 15px;
+  }
+  .filter-options button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+  .search-section {
+    padding: 20px;
+    gap: 10px;
+  }
+  .search-section .search-box div input {
+    width: 200px;
+    height: 40px;
+  }
+  .journey-card {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+  }
+  .journey-card .journey-info {
+    gap: 20px;
+    flex-direction: column;
+  }
+  .journey-card .arrow-icon {
+    font-size: 40px;
+  }
+  .journey-card .price {
+    font-size: 18px;
+  }
+  .journey-card .select-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 480px) {
+  .search-section {
+    padding: 15px;
+  }
+  .search-section .search-box div input {
+    width: 180px;
+    height: 35px;
+  }
+  .journey-card .arrow-icon {
+    font-size: 30px;
+  }
+  .journey-card .price {
+    font-size: 16px;
+  }
+  .journey-card .select-button {
+    padding: 8px 15px;
+    font-size: 12px;
+  }
 }/*# sourceMappingURL=comprar.css.map */
