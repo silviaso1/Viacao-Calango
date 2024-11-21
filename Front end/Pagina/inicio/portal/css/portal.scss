@@ -29,9 +29,31 @@ header{
     }
 }
 
+#botao{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+
+    button{
+        background-color: #002776;
+        padding: 20px;
+        border: 1px solid #002776;
+        border-radius: 10px;
+    }
+
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    
+    a:active, a:focus {
+        color: inherit; 
+        outline: none;
+    }
+}
+
 .container {
  
-
     .banner {
         text-align: center;
         background-image: url("../img/imagem\ garagem.png");
@@ -46,24 +68,18 @@ header{
       
 
         h2{
-            font-size: 3rem;
+            font-size: 3.2rem;
             margin-left: 75px;
+        }
+
+        p{
+            font-size: 1.7rem;
         }
         .compre{
             width: 80%;
         }
 
-        .form{
-            background-color: white;
-            border-radius: 25px;
-            display: flex;
-            flex-direction: column;
-            width: 600px;
-            align-items: center;
-            height: 400px;
-            margin-right: 30px;
-            
-        }
+       
         .data{
             display: flex;
         }
@@ -79,37 +95,7 @@ header{
                 margin-bottom: 10px;
             }
         }
-        form {
-          
-            justify-content: center;
-            margin-top: 20px;
-           
-            p{
-                color: black;
-                font-size: 1.5px;
-            }
-
-            input {
-                margin-right: 25px;
-                padding: 10px;
-                margin-left: 25px;
-                border-radius: 15px;
-                border: 1px solid #ccc;
-                width: 150px;
-                height: 50px;
-            }
-
-            button {
-                background-color: #0E0C5F;
-                color: white;
-                padding: 10px;
-                border: none;
-                border-radius: 25px;
-                cursor: pointer;
-                width: 90%;
-                margin-top: 45px;
-            }
-        }
+        
     }
 
     .destinos {

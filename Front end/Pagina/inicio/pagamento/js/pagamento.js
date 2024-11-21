@@ -13,3 +13,4 @@ function mostrarCampos(tipoPagamento) {
         document.getElementById("form-boleto").style.display = "block";
     }
 }
+

@@ -5,6 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagamento</title>
     <link rel="stylesheet" href="./css/pagamento.css">
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+    const journeyDetails = JSON.parse(localStorage.getItem('selectedJourney'));
+    const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats')) || [];
+
+    if (journeyDetails) {
+        document.querySelector('.informacoes-viagem').innerHTML = `
+            <p><strong>${journeyDetails.tipo}</strong></p>
+            <p>${journeyDetails.horarioSaida} <span>&rarr;</span> ${journeyDetails.horarioChegada}</p>
+            <p>${journeyDetails.origem} <br> ${journeyDetails.destino}</p>
+            <p><strong>Data de Ida:</strong> ${journeyDetails.dataIda}</p>
+            ${journeyDetails.dataVolta ? `<p><strong>Data de Volta:</strong> ${journeyDetails.dataVolta}</p>` : ''}
+            <p>${journeyDetails.tempoViagem} de viagem</p>
+            <p><strong>Assentos Selecionados:</strong> ${selectedSeats.join(', ')}</p>
+        `;
+        document.querySelector('.resumo span').textContent = `R$ ${journeyDetails.preco}`;
+        document.querySelector('.total strong').textContent = `R$ ${journeyDetails.preco}`;
+    }
+});
+
+function confirmarCompra(event) {
+    event.preventDefault();
+
+    const journeyDetails = JSON.parse(localStorage.getItem('selectedJourney'));
+    const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats')) || [];
+    const nome = document.querySelector('input[name="nome"]').value;
+    const documento = document.querySelector('input[name="documento"]').value;
+
+    if (journeyDetails && nome && documento) {
+        const novaPassagem = {
+            ...journeyDetails,
+            nome,
+            documento,
+            assentos: selectedSeats.join(', ')
+        };
+
+        const passagensEmitidas = JSON.parse(localStorage.getItem('passagensEmitidas')) || [];
+        passagensEmitidas.push(novaPassagem);
+        localStorage.setItem('passagensEmitidas', JSON.stringify(passagensEmitidas));
+
+        window.location.href = "../Emissao/emitido.html";
+    } else {
+        alert("Por favor, preencha todos os dados.");
+    }
+}
+
+
+
+
+        
+    </script>
 </head>
 <body>
     <header>
@@ -20,18 +71,11 @@
                 <section class="dados-passageiro">
                     <h2>Dados do passageiro</h2>
                     <div class="informacoes-viagem">
-                        <p><strong>Semi-leito</strong></p>
-                        <p>00:05 <span>&rarr;</span> 06:35</p>
-                        <p>Rio de Janeiro - Rodoviária <br> São Paulo - Rodoviária</p>
-                        <p>6h 30min de viagem</p>
+                        <!-- Dados da viagem e assentos selecionados serão atualizados aqui -->
                     </div>
-                    <form>
-                        <input type="text" placeholder="Nome completo">
-                        <input type="text" placeholder="Número do documento">
-                        <label>
-                            <input type="checkbox">
-                            Esta passagem possui mobilidade reduzida
-                        </label>
+                    <form id="form-pagamento">
+                        <input type="text" name="nome" placeholder="Nome completo" required>
+                        <input type="text" name="documento" placeholder="Número do documento" required>
                     </form>
                 </section>
     
@@ -58,21 +102,21 @@
                         <input type="text" placeholder="CPF">
                         <input type="date" placeholder="Data de nascimento">
                         <input type="email" placeholder="E-mail">
-                        <div class="total">Total: <strong>R$ 110,00</strong></div>
+                      
                     </div>
 
                     <div id="form-pix" class="dados-pix" style="display: none;">
                         <p>Escolha um banco para realizar o pagamento via Pix.</p>
                         <input type="text" placeholder="Banco">
                         <input type="text" placeholder="Chave Pix">
-                        <div class="total">Total: <strong>R$ 100,00</strong></div>
+                 
                     </div>
 
                     <div id="form-boleto" class="dados-boleto" style="display: none;">
                         <p>Gerar boleto bancário para pagamento.</p>
                         <input type="text" placeholder="CPF">
                         <input type="email" placeholder="E-mail">
-                        <div class="total">Total: <strong>R$ 100,00</strong></div>
+                        
                     </div>
                 </section>
     
@@ -86,14 +130,13 @@
                         <p>Cancele quando quiser <br> Mudou de ideia? Cancele sua viagem em até 30 dias.</p>
                     </div>
                 </section>
-                
             </div>
-            <footer>
-                <a href="./concluido.html"><button class="confirmar">Confirmar</button></a>
-                <input type="checkbox">
-                <label> Ao confirmar a compra eu concordo com os <a href="#">termos de uso</a> e <a href="#">políticas de privacidade</a>.</label>
-            </footer>
         </main>
+        <footer>
+            <button class="confirmar" onclick="confirmarCompra(event)">Confirmar</button>
+            <input type="checkbox">
+            <label>Ao confirmar a compra eu concordo com os <a href="#">termos de uso</a> e <a href="#">políticas de privacidade</a></label>
+        </footer>
     </div>
 
     <script src="./js/pagamento.js"></script>

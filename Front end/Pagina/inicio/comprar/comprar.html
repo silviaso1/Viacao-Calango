@@ -5,20 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comprar Passagens</title>
     <link rel="stylesheet" href="./css/comprar.css">
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const destinationField = document.getElementById('destination');
-            const savedDestination = localStorage.getItem('destination');
+   
 
-            // Atualiza o placeholder do campo "Destino"
-            if (savedDestination) {
-                destinationField.placeholder = savedDestination;
-                destinationField.disabled = true; // Desativa edição do campo
-            } else {
-                destinationField.placeholder = "Selecione um destino";
-            }
-        });
-    </script>
+    
     <script src="./js/comprar.js"></script>
 </head>
 <body>
@@ -61,9 +50,8 @@
             <button onclick="filterByDuration()">Tempo de viagem</button>
         </div>
         <div id="journeys">
-            <!-- Journey Cards -->
             <div class="journey-card" data-price="50" data-duration="360">
-                <p>Semi-leito</p>
+                <p>Convencional</p>
                 <div class="flex">
                     <div class="journey-info">
                         <p>05:00</p>
@@ -71,7 +59,7 @@
                         <p>11:00</p>
                         <p class="price">R$50,00</p>
                     </div>
-                    <button class="select-button"><a href="../assento/assento.html">Selecionar</a></button>
+                    <button class="select-button" onclick="saveJourneyDetails(this)">Selecionar</button>
                 </div>
             </div>
             <div class="journey-card" data-price="100" data-duration="400">
@@ -83,11 +71,11 @@
                         <p>12:40</p>
                         <p class="price">R$100,00</p>
                     </div>
-                    <button class="select-button"><a href="../assento/assento.html">Selecionar</a></button>
+                    <button class="select-button" onclick="saveJourneyDetails(this)">Selecionar</button>
                 </div>
             </div>
             <div class="journey-card" data-price="150" data-duration="450">
-                <p>Executivo</p>
+                <p>Leito</p>
                 <div class="flex">
                     <div class="journey-info">
                         <p>07:30</p>
@@ -95,7 +83,7 @@
                         <p>15:00</p>
                         <p class="price">R$150,00</p>
                     </div>
-                    <button class="select-button"><a href="../assento/assento.html">Selecionar</a></button>
+                    <button class="select-button" onclick="saveJourneyDetails(this)">Selecionar</button>
                 </div>
             </div>
             <div class="journey-card" data-price="75" data-duration="480">
@@ -107,23 +95,23 @@
                         <p>16:00</p>
                         <p class="price">R$75,00</p>
                     </div>
-                    <button class="select-button"><a href="../assento/assento.html">Selecionar</a></button>
+                    <button class="select-button" onclick="saveJourneyDetails(this)">Selecionar</button>
                 </div>
             </div>
             <div class="journey-card" data-price="200" data-duration="360">
-                <p>Executivo</p>
+                <p>Leito</p>
                 <div class="flex">
                     <div class="journey-info">
                         <p>09:00</p>
                         <div class="arrow-icon">→</div>
                         <p>15:00</p>
-                        <p class="price">R$200,00</p>
+                        <p class="price">R$150,00</p>
                     </div>
-                    <button class="select-button"><a href="../assento/assento.html">Selecionar</a></button>
+                    <button class="select-button" onclick="saveJourneyDetails(this)">Selecionar</button>
                 </div>
             </div>
             <div class="journey-card" data-price="120" data-duration="390">
-                <p>Leito</p>
+                <p>Semi-Leito</p>
                 <div class="flex">
                     <div class="journey-info">
                         <p>10:00</p>
@@ -131,10 +119,11 @@
                         <p>16:30</p>
                         <p class="price">R$120,00</p>
                     </div>
-                    <button class="select-button"><a href="../assento/assento.html">Selecionar</a></button>
+                    <button class="select-button" onclick="saveJourneyDetails(this)">Selecionar</button>
                 </div>
             </div>
         </div>
+
     </main>
     <footer class="footer">
         <div class="footer-sections">

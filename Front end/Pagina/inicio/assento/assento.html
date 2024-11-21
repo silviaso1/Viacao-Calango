@@ -64,10 +64,29 @@
             <div><span class="available"></span> Disponível</div>
             <div><span class="selected"></span> Selecionado</div>
             <div><span class="occupied"></span> Ocupado</div>
-            <button id="btnReservar"><a href="../pagamento/pagamento.html">Reservar</a></button>
+            <button id="btnReservar">Reservar</button>
         </div>   
     </div>
 
-    <script src="./js/requisicao.js"></script>
+    <script>
+        // Gerenciar seleção de assentos
+        const seats = document.querySelectorAll('.seat:not(.occupied)');
+        const reserveButton = document.getElementById('btnReservar');
+
+        seats.forEach(seat => {
+            seat.addEventListener('click', () => {
+                seat.classList.toggle('selected');
+            });
+        });
+
+        // Armazenar dados no LocalStorage
+        reserveButton.addEventListener('click', () => {
+            const selectedSeats = Array.from(document.querySelectorAll('.seat.selected'))
+                .map(seat => seat.dataset.seat);
+
+            localStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
+            window.location.href = '../pagamento/pagamento.html';
+        });
+    </script>
 </body>
 </html>
