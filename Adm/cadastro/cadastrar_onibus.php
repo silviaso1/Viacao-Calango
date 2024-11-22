@@ -18,8 +18,8 @@ if ($conn->connect_error) {
 $data = json_decode(file_get_contents('php://input'), true);
 
 // Função para cadastrar ônibus
-function cadastrarOnibus($placa, $modelo, $capacidade, $id, $conn) {
-    $sql = "INSERT INTO onibus (placa, modelo, capacidade, id) VALUES ('$placa', '$modelo', '$capacidade', '$id')";
+function cadastrarOnibus($modelo, $placa, $ano, $capacidade, $conn) {
+    $sql = "INSERT INTO onibus (modelo, placa, ano, capacidade) VALUES ('$modelo', '$placa', '$ano', '$capacidade')";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(['message' => 'Ônibus cadastrado com sucesso!']);
     } else {
@@ -28,8 +28,8 @@ function cadastrarOnibus($placa, $modelo, $capacidade, $id, $conn) {
 }
 
 // Função para editar ônibus
-function editarOnibus($id, $placa, $modelo, $capacidade, $conn) {
-    $sql = "UPDATE onibus SET placa='$placa', modelo='$modelo', capacidade='$capacidade' WHERE id='$id'";
+function editarOnibus($id, $modelo, $placa, $ano, $capacidade, $conn) {
+    $sql = "UPDATE onibus SET modelo='$modelo', placa='$placa', ano='$ano', capacidade='$capacidade' WHERE id='$id'";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(['message' => 'Ônibus atualizado com sucesso!']);
     } else {
@@ -60,15 +60,14 @@ function listarOnibus($conn) {
 
 // Verifica o método HTTP
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    cadastrarOnibus($data['placa'], $data['modelo'], $data['capacidade'], $data['id'], $conn);
+    cadastrarOnibus($data['modelo'], $data['placa'], $data['ano'], $data['capacidade'], $conn);
 } elseif ($_SERVER['REQUEST_METHOD'] === 'PUT') {
-    editarOnibus($data['id'], $data['placa'], $data['modelo'], $data['capacidade'], $conn);
+    editarOnibus($data['id'], $data['modelo'], $data['placa'], $data['ano'], $data['capacidade'], $conn);
 } elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     excluirOnibus($data['id'], $conn);
-} elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
+} else {
     listarOnibus($conn);
 }
 
-// Fechar conexão
 $conn->close();
 ?>
