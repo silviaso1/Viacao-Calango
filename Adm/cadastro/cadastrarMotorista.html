@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Motorista</title>
+    <link rel="stylesheet" href="./css/fazerCadastro.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="cadastro">
+            <h2 id="titulo-cadastro">Cadastro de Motorista</h2>
+            <form id="formulario" class="form-cadastro">
+                <input type="text" id="nome" placeholder="Nome do Motorista" required>
+                <input type="text" id="cnh" placeholder="CNH" required>
+                <input type="text" id="cpf" placeholder="CPF" required>
+                <input type="text" id="id" placeholder="ID do Motorista" required>
+                <button type="button" id="btnCadastrar">Cadastrar</button>
+            </form>
+        </div>
+
+        <div class="lista-cadastrados">
+            <h2>Itens Cadastrados</h2>
+            <ul id="lista-motoristas">
+                <!-- A lista de motoristas será exibida aqui -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Função para cadastrar o motorista
+        document.getElementById('btnCadastrar').addEventListener('click', () => {
+            // Capturar os valores do formulário
+            const nome = document.getElementById('nome').value;
+            const cnh = document.getElementById('cnh').value;
+            const cpf = document.getElementById('cpf').value;
+            const id = document.getElementById('id').value;
+
+            // Criar o objeto com os dados
+            const dados = {
+                nome: nome,
+                cnh: cnh,
+                cpf: cpf,
+                id: id
+            };
+
+            // Enviar os dados para o servidor usando fetch
+            fetch('cadastrar_motorista.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dados)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message); // Mostrar mensagem de sucesso ou erro
+
+                // Limpar o formulário
+                document.getElementById('formulario').reset();
+
+                // Atualizar a lista de motoristas
+                listarMotoristas();
+            })
+            .catch(error => {
+                console.error("Erro ao cadastrar o motorista:", error);
+                alert("Erro ao cadastrar o motorista. Veja o console para mais detalhes.");
+            });
+        });
+
+        // Função para listar os motoristas
+        function listarMotoristas() {
+            fetch('cadastrar_motorista.php')
+                .then(response => response.json())
+                .then(data => {
+                    const listaMotoristas = document.getElementById('lista-motoristas');
+                    listaMotoristas.innerHTML = ''; // Limpar a lista atual
+
+                    data.forEach(motorista => {
+                        const li = document.createElement('li');
+                        li.textContent = `Nome: ${motorista.nome}, CNH: ${motorista.cnh}, CPF: ${motorista.cpf}, ID: ${motorista.id}`;
+                        listaMotoristas.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    console.error("Erro ao listar os motoristas:", error);
+                });
+        }
+
+        // Listar os motoristas ao carregar a página
+        listarMotoristas();
+    </script>
+
+</body>
+</html>

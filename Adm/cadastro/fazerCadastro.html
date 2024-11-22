@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Ônibus</title>
+    <link rel="stylesheet" href="./css/fazerCadastro.css">
+</head>
+<body>
+    <div class="container">
+        <div class="cadastro">
+            <h2 id="titulo-cadastro">Cadastro</h2>
+            <form class="form-cadastro" id="formulario">
+                <label for="modelo">Modelo:</label>
+                <input type="text" id="modelo" name="modelo" required>
+                <label for="placa">Placa:</label>
+                <input type="text" id="placa" name="placa" required>
+                <label for="ano">Ano:</label>
+                <input type="text" id="ano" name="ano" required>
+                <label for="capacidade">Capacidade:</label>
+                <input type="text" id="capacidade" name="capacidade" required>
+                <button type="button" id="btnCadastrar">Cadastrar</button>
+            </form>
+        </div>
+        
+        <div class="lista-cadastrados">
+            <h2>Itens Cadastrados</h2>
+            <ul id="lista-usuarios">
+                <!-- A lista de itens cadastrados será exibida aqui -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('btnCadastrar').addEventListener('click', () => {
+            const modelo = document.getElementById('modelo').value;
+            const placa = document.getElementById('placa').value;
+            const ano = document.getElementById('ano').value;
+            const capacidade = document.getElementById('capacidade').value;
+
+            const dados = { modelo, placa, ano, capacidade };
+
+            fetch('cadastrar_onibus.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dados)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                document.getElementById('formulario').reset();
+                listarOnibus();
+            })
+            .catch(error => {
+                console.error("Erro ao cadastrar o ônibus:", error);
+                alert("Erro ao cadastrar o ônibus.");
+            });
+        });
+
+        // Função para listar os ônibus
+        function listarOnibus() {
+            fetch('cadastrar_onibus.php')
+                .then(response => response.json())
+                .then(data => {
+                    const listaUsuarios = document.getElementById('lista-usuarios');
+                    listaUsuarios.innerHTML = '';
+
+                    data.forEach(onibus => {
+                        const li = document.createElement('li');
+                        li.textContent = `Modelo: ${onibus.modelo}, Placa: ${onibus.placa}`;
+
+                        // Adicionar botões de editar e excluir
+                        const editarBtn = document.createElement('button');
+                        editarBtn.textContent = 'Editar';
+                        editarBtn.onclick = () => editarOnibus(onibus.id);
+
+                        const excluirBtn = document.createElement('button');
+                        excluirBtn.textContent = 'Deletar';
+                        excluirBtn.onclick = () => excluirOnibus(onibus.id);
+
+                        li.appendChild(editarBtn);
+                        li.appendChild(excluirBtn);
+                        listaUsuarios.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    console.error("Erro ao listar os ônibus:", error);
+                });
+        }
+
+        // Função para excluir um ônibus
+        function excluirOnibus(id) {
+            if (confirm('Tem certeza que deseja excluir este ônibus?')) {
+                fetch('cadastrar_onibus.php', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    listarOnibus();
+                })
+                .catch(error => {
+                    console.error("Erro ao excluir o ônibus:", error);
+                });
+            }
+        }
+
+        // Função para editar um ônibus
+        function editarOnibus(id) {
+            const modelo = prompt("Novo modelo:");
+            const placa = prompt("Nova placa:");
+            const ano = prompt("Novo ano:");
+            const capacidade = prompt("Nova capacidade:");
+
+            if (modelo && placa && ano && capacidade) {
+                const dados = { id, modelo, placa, ano, capacidade };
+
+                fetch('cadastrar_onibus.php', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dados)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    listarOnibus();
+                })
+                .catch(error => {
+                    console.error("Erro ao editar o ônibus:", error);
+                });
+            }
+        }
+
+        // Carregar a lista de ônibus ao carregar a página
+        window.onload = listarOnibus;
+    </script>
+</body>
+</html>
