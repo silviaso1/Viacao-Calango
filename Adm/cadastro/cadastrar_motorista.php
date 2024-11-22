@@ -1,58 +1,72 @@
 <?php
-header("Content-Type: application/json");
+header('Content-Type: application/json');
 
-// Conexão com o banco de dados
-$conn = new mysqli("localhost", "root", "", "viacao");
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "viacao";  // Altere para o nome do seu banco de dados
+
+// Criar conexão
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Verificar conexão
 if ($conn->connect_error) {
-    echo json_encode(["message" => "Conexão falhou: " . $conn->connect_error]);
-    exit;
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// Verificar o método HTTP
-$method = $_SERVER['REQUEST_METHOD'];
+// Recebe os dados JSON do frontend
+$data = json_decode(file_get_contents('php://input'), true);
 
-if ($method === 'POST') {
-    // Receber os dados enviados em JSON
-    $data = json_decode(file_get_contents("php://input"), true);
-
-    // Validar os campos
-    if (!isset($data['nome'], $data['cnh'], $data['cpf'], $data['id'])) {
-        echo json_encode(["message" => "Erro: Todos os campos devem ser preenchidos."]);
-        exit;
-    }
-
-    // Escapar os dados para evitar SQL Injection
-    $nome = $conn->real_escape_string($data['nome']);
-    $cnh = $conn->real_escape_string($data['cnh']);
-    $cpf = $conn->real_escape_string($data['cpf']);
-    $id = $conn->real_escape_string($data['id']);
-
-    // Inserir no banco de dados
-    $sql = "INSERT INTO motoristas (nome, cnh, cpf, id) 
-            VALUES ('$nome', '$cnh', '$cpf', '$id')";
-
+// Função para cadastrar motorista
+function cadastrarMotorista($nome, $cnh, $cpf, $id, $conn) {
+    $sql = "INSERT INTO motoristas (nome, cnh, cpf, id) VALUES ('$nome', '$cnh', '$cpf', '$id')";
     if ($conn->query($sql) === TRUE) {
-        echo json_encode(["message" => "Motorista cadastrado com sucesso!"]);
+        echo json_encode(['message' => 'Motorista cadastrado com sucesso!']);
     } else {
-        echo json_encode(["message" => "Erro ao cadastrar o motorista: " . $conn->error]);
+        echo json_encode(['message' => 'Erro ao cadastrar motorista: ' . $conn->error]);
     }
-} elseif ($method === 'GET') {
-    // Buscar os dados para listagem
-    $sql = "SELECT nome, cnh, cpf, id FROM motoristas";
-    $result = $conn->query($sql);
+}
 
+// Função para editar motorista
+function editarMotorista($id, $nome, $cnh, $cpf, $conn) {
+    $sql = "UPDATE motoristas SET nome='$nome', cnh='$cnh', cpf='$cpf' WHERE id='$id'";
+    if ($conn->query($sql) === TRUE) {
+        echo json_encode(['message' => 'Motorista atualizado com sucesso!']);
+    } else {
+        echo json_encode(['message' => 'Erro ao atualizar motorista: ' . $conn->error]);
+    }
+}
+
+// Função para excluir motorista
+function excluirMotorista($id, $conn) {
+    $sql = "DELETE FROM motoristas WHERE id='$id'";
+    if ($conn->query($sql) === TRUE) {
+        echo json_encode(['message' => 'Motorista excluído com sucesso!']);
+    } else {
+        echo json_encode(['message' => 'Erro ao excluir motorista: ' . $conn->error]);
+    }
+}
+
+// Função para listar motoristas
+function listarMotoristas($conn) {
+    $sql = "SELECT * FROM motoristas";
+    $result = $conn->query($sql);
     $motoristas = [];
     while ($row = $result->fetch_assoc()) {
         $motoristas[] = $row;
     }
-
-    // Retornar os dados como JSON
     echo json_encode($motoristas);
+}
+
+// Verifica o método de requisição e executa a ação correspondente
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    cadastrarMotorista($data['nome'], $data['cnh'], $data['cpf'], $data['id'], $conn);
+} elseif ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+    editarMotorista($data['id'], $data['nome'], $data['cnh'], $data['cpf'], $conn);
+} elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    excluirMotorista($data['id'], $conn);
 } else {
-    // Responder com erro para outros métodos HTTP
-    echo json_encode(["message" => "Método não suportado. Use POST ou GET."]);
+    listarMotoristas($conn);
 }
 
 $conn->close();
