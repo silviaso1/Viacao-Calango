@@ -6,55 +6,72 @@
     <title>Pagamento</title>
     <link rel="stylesheet" href="./css/pagamento.css">
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-    const journeyDetails = JSON.parse(localStorage.getItem('selectedJourney'));
-    const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats')) || [];
+        document.addEventListener('DOMContentLoaded', () => {
+            const journeyDetails = JSON.parse(localStorage.getItem('selectedJourney'));
+            const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats')) || [];
 
-    if (journeyDetails) {
-        document.querySelector('.informacoes-viagem').innerHTML = `
-            <p><strong>${journeyDetails.tipo}</strong></p>
-            <p>${journeyDetails.horarioSaida} <span>&rarr;</span> ${journeyDetails.horarioChegada}</p>
-            <p>${journeyDetails.origem} <br> ${journeyDetails.destino}</p>
-            <p><strong>Data de Ida:</strong> ${journeyDetails.dataIda}</p>
-            ${journeyDetails.dataVolta ? `<p><strong>Data de Volta:</strong> ${journeyDetails.dataVolta}</p>` : ''}
-            <p>${journeyDetails.tempoViagem} de viagem</p>
-            <p><strong>Assentos Selecionados:</strong> ${selectedSeats.join(', ')}</p>
-        `;
-        document.querySelector('.resumo span').textContent = `R$ ${journeyDetails.preco}`;
-        document.querySelector('.total strong').textContent = `R$ ${journeyDetails.preco}`;
-    }
-});
+            if (journeyDetails) {
+                document.querySelector('.informacoes-viagem').innerHTML = `
+                    <p><strong>${journeyDetails.tipo}</strong></p>
+                    <p>${journeyDetails.horarioSaida} <span>&rarr;</span> ${journeyDetails.horarioChegada}</p>
+                    <p>${journeyDetails.origem} <br> ${journeyDetails.destino}</p>
+                    <p><strong>Data de Ida:</strong> ${journeyDetails.dataIda}</p>
+                    ${journeyDetails.dataVolta ? `<p><strong>Data de Volta:</strong> ${journeyDetails.dataVolta}</p>` : ''}
+                    <p>${journeyDetails.tempoViagem} de viagem</p>
+                    <p><strong>Assentos Selecionados:</strong> ${selectedSeats.join(', ')}</p>
+                `;
+                document.querySelector('.resumo span').textContent = `R$ ${journeyDetails.preco}`;
+                document.querySelector('.total strong').textContent = `R$ ${journeyDetails.preco}`;
+            }
+        });
 
-function confirmarCompra(event) {
-    event.preventDefault();
+        function confirmarCompra(event) {
+            event.preventDefault();
 
-    const journeyDetails = JSON.parse(localStorage.getItem('selectedJourney'));
-    const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats')) || [];
-    const nome = document.querySelector('input[name="nome"]').value;
-    const documento = document.querySelector('input[name="documento"]').value;
+            const journeyDetails = JSON.parse(localStorage.getItem('selectedJourney'));
+            const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats')) || [];
+            const nome = document.querySelector('input[name="nome"]').value;
+            const documento = document.querySelector('input[name="documento"]').value;
+            const tipoPagamento = document.querySelector('select[name="tipo_pagamento"]').value;
 
-    if (journeyDetails && nome && documento) {
-        const novaPassagem = {
-            ...journeyDetails,
-            nome,
-            documento,
-            assentos: selectedSeats.join(', ')
-        };
+            if (journeyDetails && nome && documento && tipoPagamento) {
+                const dados = new URLSearchParams();
+                dados.append('nome', nome);
+                dados.append('documento', documento);
+                dados.append('tipo', journeyDetails.tipo);
+                dados.append('origem', journeyDetails.origem);
+                dados.append('destino', journeyDetails.destino);
+                dados.append('data_ida', journeyDetails.dataIda);
+                dados.append('data_volta', journeyDetails.dataVolta || '');
+                dados.append('horario_saida', journeyDetails.horarioSaida);
+                dados.append('horario_chegada', journeyDetails.horarioChegada);
+                dados.append('tempo_viagem', journeyDetails.tempoViagem);
+                dados.append('preco', journeyDetails.preco);
+                dados.append('assentos', selectedSeats.join(', '));
+                dados.append('tipo_pagamento', tipoPagamento);
 
-        const passagensEmitidas = JSON.parse(localStorage.getItem('passagensEmitidas')) || [];
-        passagensEmitidas.push(novaPassagem);
-        localStorage.setItem('passagensEmitidas', JSON.stringify(passagensEmitidas));
-
-        window.location.href = "../Emissao/emitido.html";
-    } else {
-        alert("Por favor, preencha todos os dados.");
-    }
-}
-
-
-
-
-        
+                fetch('salvar_passagem.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: dados.toString()
+                })
+                .then(response => response.text())
+                .then(data => {
+                    alert(data);
+                    if (data.includes("salva com sucesso")) {
+                        window.location.href = "listar_passagens.php";
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro ao salvar a passagem:", error);
+                    alert("Erro ao processar a compra. Tente novamente.");
+                });
+            } else {
+                alert("Por favor, preencha todos os dados corretamente.");
+            }
+        }
     </script>
 </head>
 <body>
@@ -62,9 +79,9 @@ function confirmarCompra(event) {
         <a href="../portal/portal.html">
             <img src="../exports/logo.png" alt="Logo Viação Galango">
         </a>
-        <button><a href="../../Cadastro e login/login/login.html">Entrar</a></button>
+        <button><a href="../../Cadastro e login/login.html">Entrar</a></button>
     </header>
-    
+
     <div class="container">
         <main>
             <div class="dados">
@@ -76,69 +93,29 @@ function confirmarCompra(event) {
                     <form id="form-pagamento">
                         <input type="text" name="nome" placeholder="Nome completo" required>
                         <input type="text" name="documento" placeholder="Número do documento" required>
+                        <label for="tipo_pagamento">Tipo de Pagamento:</label>
+                        <select name="tipo_pagamento" id="tipo_pagamento" required>
+                            <option value="">Selecione</option>
+                            <option value="cartao">Cartão de Crédito</option>
+                            <option value="boleto">Boleto Bancário</option>
+                            <option value="pix">PIX</option>
+                        </select>
                     </form>
                 </section>
-    
                 <section class="resumo">
                     <h2>Resumo</h2>
-                    <p>Valor das passagens <span>R$ 100,00</span></p>
-                    <p>Impostos e taxas <span>R$ 0,00</span></p>
-                    <p>Seguro <span>R$ 0,00</span></p>
+                    <p>Valor: <span>R$ 0,00</span></p>
                 </section>
-    
-                <section class="pagamento">
-                    <h2>Escolha a forma de pagamento</h2>
-                    <div class="opcoes-pagamento">
-                        <button class="cartao" onclick="mostrarCampos('cartao')">Cartão de crédito</button>
-                        <button class="pix" onclick="mostrarCampos('pix')">Pix</button>
-                        <button class="boleto" onclick="mostrarCampos('boleto')">Boleto</button>
-                    </div>
-                    
-                    <div id="form-cartao" class="dados-cartao">
-                        <input type="text" placeholder="Número do cartão">
-                        <input type="text" placeholder="Nome do titular">
-                        <input type="text" placeholder="Validade">
-                        <input type="text" placeholder="CVV">
-                        <input type="text" placeholder="CPF">
-                        <input type="date" placeholder="Data de nascimento">
-                        <input type="email" placeholder="E-mail">
-                      
-                    </div>
-
-                    <div id="form-pix" class="dados-pix" style="display: none;">
-                        <p>Escolha um banco para realizar o pagamento via Pix.</p>
-                        <input type="text" placeholder="Banco">
-                        <input type="text" placeholder="Chave Pix">
-                 
-                    </div>
-
-                    <div id="form-boleto" class="dados-boleto" style="display: none;">
-                        <p>Gerar boleto bancário para pagamento.</p>
-                        <input type="text" placeholder="CPF">
-                        <input type="email" placeholder="E-mail">
-                        
-                    </div>
+                <section class="total">
+                    <p>Total: <strong>R$ 0,00</strong></p>
                 </section>
-    
-                <section class="informacoes-adicionais">
-                    <div class="pagamento-seguro">
-                        <img src="./img/🦆 icon _wallet_.png" alt="Pagamento Seguro">
-                        <p>Pagamento seguro <br> Utilizamos os métodos eficazes e seguros para manter a segurança dos seus dados.</p>
-                    </div>
-                    <div class="cancelamento">
-                        <img src="./img/🦆 icon _cancel_.png" alt="Cancelamento">
-                        <p>Cancele quando quiser <br> Mudou de ideia? Cancele sua viagem em até 30 dias.</p>
-                    </div>
-                </section>
+                <footer>
+                    <button class="confirmar" onclick="confirmarCompra(event)">Confirmar</button>
+                    <input type="checkbox" id="termos" required>
+                    <label for="termos">Ao confirmar a compra eu concordo com os <a href="#">termos de uso</a> e <a href="#">políticas de privacidade</a></label>
+                </footer>
             </div>
         </main>
-        <footer>
-            <button class="confirmar" onclick="confirmarCompra(event)">Confirmar</button>
-            <input type="checkbox">
-            <label>Ao confirmar a compra eu concordo com os <a href="#">termos de uso</a> e <a href="#">políticas de privacidade</a></label>
-        </footer>
     </div>
-
-    <script src="./js/pagamento.js"></script>
 </body>
 </html>

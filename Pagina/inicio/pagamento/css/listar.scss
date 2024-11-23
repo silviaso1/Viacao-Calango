@@ -1,0 +1,125 @@
+@import "../../exports/header.scss";
+@import "../../exports/footer.scss";
+
+/* Reset de margens e padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Estilos gerais */
+  $primary-color: #2a3ba0;
+  $secondary-color: #27ae60;
+  $button-hover-color: #e74c3c;
+  $card-shadow: rgba(0, 0, 0, 0.1);
+  $card-hover-shadow: rgba(0, 0, 0, 0.1);
+  $footer-background: #333;
+  
+  
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+
+    footer{
+        margin-bottom: -20px;
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+    
+}
+
+header{
+    a{
+        text-decoration: none;
+    }
+
+    img{
+        width: 80%;
+        height: 60px;
+    }
+}
+  
+
+  
+  /* Container Principal */
+  .container {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Cartão de Passagem */
+  .passagem-card {
+    width: 100%;
+    max-width: 900px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px $card-shadow;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    padding: 20px;
+    
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 25px $card-hover-shadow;
+    }
+  }
+  
+  .passagem-header {
+    background-color: $primary-color;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  .passagem-details {
+    color: #444;
+    padding-top: 10px;
+  }
+  
+  .passagem-details p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .passagem-price {
+    font-size: 18px;
+    font-weight: 600;
+    color: $secondary-color;
+    margin-top: 15px;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 15px;
+  
+    button {
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: $button-hover-color;
+      }
+    }
+  }
+  
