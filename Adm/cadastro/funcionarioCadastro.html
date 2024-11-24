@@ -60,171 +60,171 @@
 
     <script>
         // Função para atualizar a lista de funcionários cadastrados
-        function atualizarListaFuncionarios() {
-            fetch('./cadastrar_funcionarios.php', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(funcionarios => {
-                const listaUsuarios = document.getElementById('lista-usuarios');
-                listaUsuarios.innerHTML = ''; // Limpar lista antes de adicionar novos itens
+       // Função para atualizar a lista de funcionários
+function atualizarListaFuncionarios() {
+    let xmlhttp = new XMLHttpRequest(); // Criando o objeto XMLHttpRequest
 
-                funcionarios.forEach(funcionario => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `${funcionario.nome} - ${funcionario.cpf} - ${funcionario.cargo} - ${funcionario.numero_cracha}`;
+    xmlhttp.open('GET', './cadastrar_funcionarios.php', true);
+    xmlhttp.setRequestHeader('Content-Type', 'application/json');
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            const funcionarios = JSON.parse(xmlhttp.responseText);
+            const listaUsuarios = document.getElementById('lista-usuarios');
+            listaUsuarios.innerHTML = ''; // Limpar lista antes de adicionar novos itens
 
-                    // Criar botões de Editar e Excluir
-                    const btnEditar = document.createElement('button');
-                    btnEditar.textContent = 'Editar';
-                    btnEditar.classList.add('editar');
-                    btnEditar.onclick = function() {
-                        editarFuncionario(funcionario.id, funcionario.nome, funcionario.cpf, funcionario.cargo, funcionario.numero_cracha);
-                    };
+            funcionarios.forEach(funcionario => {
+                const li = document.createElement('li');
+                li.innerHTML = `${funcionario.nome} - ${funcionario.cpf} - ${funcionario.cargo} - ${funcionario.numero_cracha}`;
 
-                    const btnExcluir = document.createElement('button');
-                    btnExcluir.textContent = 'Excluir';
-                    btnExcluir.classList.add('excluir');
-                    btnExcluir.onclick = function() {
-                        excluirFuncionario(funcionario.id);
-                    };
+                // Criar botões de Editar e Excluir
+                const btnEditar = document.createElement('button');
+                btnEditar.textContent = 'Editar';
+                btnEditar.classList.add('editar');
+                btnEditar.onclick = function () {
+                    editarFuncionario(funcionario.id, funcionario.nome, funcionario.cpf, funcionario.cargo, funcionario.numero_cracha);
+                };
 
-                    li.appendChild(btnEditar);
-                    li.appendChild(btnExcluir);
+                const btnExcluir = document.createElement('button');
+                btnExcluir.textContent = 'Excluir';
+                btnExcluir.classList.add('excluir');
+                btnExcluir.onclick = function () {
+                    excluirFuncionario(funcionario.id);
+                };
 
-                    listaUsuarios.appendChild(li);
-                });
-            })
-            .catch(error => {
-                console.error('Erro ao buscar funcionários:', error);
+                li.appendChild(btnEditar);
+                li.appendChild(btnExcluir);
+
+                listaUsuarios.appendChild(li);
             });
+        } else if (xmlhttp.readyState === 4) {
+            console.error('Erro ao buscar funcionários:', xmlhttp.statusText);
         }
+    };
+    xmlhttp.send();
+}
 
-        // Função para editar o funcionário
-        function editarFuncionario(id, nome, cpf, cargo, numero_cracha) {
-            document.getElementById('nome').value = nome;
-            document.getElementById('cpf').value = cpf;
-            document.getElementById('cargo').value = cargo;
-            document.getElementById('numero_cracha').value = numero_cracha;
-            // Alterar o botão de submit para um botão de "Atualizar"
-            const form = document.getElementById('formFuncionario');
-            const button = form.querySelector('button');
-            button.textContent = 'Atualizar';
+// Função para editar o funcionário
+function editarFuncionario(id, nome, cpf, cargo, numero_cracha) {
+    document.getElementById('nome').value = nome;
+    document.getElementById('cpf').value = cpf;
+    document.getElementById('cargo').value = cargo;
+    document.getElementById('numero_cracha').value = numero_cracha;
 
-            form.onsubmit = function(event) {
-                event.preventDefault();
-                atualizarFuncionario(id);
-            };
-        }
+    // Alterar o botão de submit para um botão de "Atualizar"
+    const form = document.getElementById('formFuncionario');
+    const button = form.querySelector('button');
+    button.textContent = 'Atualizar';
 
-        // Função para atualizar o funcionário no banco de dados
-        function atualizarFuncionario(id) {
-            const nome = document.getElementById('nome').value;
-            const cpf = document.getElementById('cpf').value;
-            const cargo = document.getElementById('cargo').value;
-            const numero_cracha = document.getElementById('numero_cracha').value;
+    form.onsubmit = function (event) {
+        event.preventDefault();
+        atualizarFuncionario(id);
+    };
+}
 
-            const data = {
-                id: id,
-                nome: nome,
-                cpf: cpf,
-                cargo: cargo,
-                numero_cracha: numero_cracha
-            };
+// Função para atualizar o funcionário no banco de dados
+function atualizarFuncionario(id) {
+    const nome = document.getElementById('nome').value;
+    const cpf = document.getElementById('cpf').value;
+    const cargo = document.getElementById('cargo').value;
+    const numero_cracha = document.getElementById('numero_cracha').value;
 
-            fetch('./cadastrar_funcionarios.php', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(result => {
-                alert(result.message);
-                if (result.message === "Funcionário atualizado com sucesso!") {
-                    document.getElementById('formFuncionario').reset();
-                    atualizarListaFuncionarios(); // Atualizar a lista após a atualização
-                    const form = document.getElementById('formFuncionario');
-                    const button = form.querySelector('button');
-                    button.textContent = 'Cadastrar';
-                    form.onsubmit = cadastrarFuncionario; // Voltar à função original de cadastrar
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Ocorreu um erro ao atualizar o funcionário!');
-            });
-        }
+    const data = {
+        id: id,
+        nome: nome,
+        cpf: cpf,
+        cargo: cargo,
+        numero_cracha: numero_cracha
+    };
 
-        // Função para excluir um funcionário
-        function excluirFuncionario(id) {
-            if (confirm('Tem certeza que deseja excluir este funcionário?')) {
-                fetch(`./cadastrar_funcionarios.php?id=${id}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(result => {
-                    alert(result.message);
-                    if (result.message === "Funcionário excluído com sucesso!") {
-                        atualizarListaFuncionarios(); // Atualizar a lista após exclusão
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                    alert('Ocorreu um erro ao excluir o funcionário!');
-                });
+    let xmlhttp = new XMLHttpRequest(); // Criando o objeto XMLHttpRequest
+
+    xmlhttp.open('PUT', './cadastrar_funcionarios.php', true);
+    xmlhttp.setRequestHeader('Content-Type', 'application/json');
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            const result = JSON.parse(xmlhttp.responseText);
+            alert(result.message);
+            if (result.message === "Funcionário atualizado com sucesso!") {
+                document.getElementById('formFuncionario').reset();
+                atualizarListaFuncionarios(); // Atualizar a lista após a atualização
+                const button = form.querySelector('button');
+                button.textContent = 'Cadastrar';
+                form.onsubmit = cadastrarFuncionario; // Voltar à função original de cadastrar
             }
+        } else if (xmlhttp.readyState === 4) {
+            console.error('Erro ao atualizar funcionário:', xmlhttp.statusText);
+            alert('Ocorreu um erro ao atualizar o funcionário!');
         }
+    };
+    xmlhttp.send(JSON.stringify(data));
+}
 
-        // Função para cadastrar o funcionário
-        function cadastrarFuncionario(event) {
-            event.preventDefault();
+// Função para excluir um funcionário
+function excluirFuncionario(id) {
+    if (confirm('Tem certeza que deseja excluir este funcionário?')) {
+        let xmlhttp = new XMLHttpRequest(); // Criando o objeto XMLHttpRequest
 
-            const nome = document.getElementById('nome').value;
-            const cpf = document.getElementById('cpf').value;
-            const cargo = document.getElementById('cargo').value;
-            const numero_cracha = document.getElementById('numero_cracha').value;
-
-            const data = {
-                nome: nome,
-                cpf: cpf,
-                cargo: cargo,
-                numero_cracha: numero_cracha
-            };
-
-            fetch('./cadastrar_funcionarios.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(result => {
+        xmlhttp.open('DELETE', `./cadastrar_funcionarios.php?id=${id}`, true);
+        xmlhttp.setRequestHeader('Content-Type', 'application/json');
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                const result = JSON.parse(xmlhttp.responseText);
                 alert(result.message);
-                if (result.message === "Funcionário cadastrado com sucesso!") {
-                    document.getElementById('formFuncionario').reset();
-                    atualizarListaFuncionarios(); // Atualizar a lista após cadastro
+                if (result.message === "Funcionário excluído com sucesso!") {
+                    atualizarListaFuncionarios(); // Atualizar a lista após exclusão
                 }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Ocorreu um erro ao cadastrar o funcionário!');
-            });
+            } else if (xmlhttp.readyState === 4) {
+                console.error('Erro ao excluir funcionário:', xmlhttp.statusText);
+                alert('Ocorreu um erro ao excluir o funcionário!');
+            }
+        };
+        xmlhttp.send();
+    }
+}
+
+// Função para cadastrar o funcionário
+function cadastrarFuncionario(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById('nome').value;
+    const cpf = document.getElementById('cpf').value;
+    const cargo = document.getElementById('cargo').value;
+    const numero_cracha = document.getElementById('numero_cracha').value;
+
+    const data = {
+        nome: nome,
+        cpf: cpf,
+        cargo: cargo,
+        numero_cracha: numero_cracha
+    };
+
+    let xmlhttp = new XMLHttpRequest(); // Criando o objeto XMLHttpRequest
+
+    xmlhttp.open('POST', './cadastrar_funcionarios.php', true);
+    xmlhttp.setRequestHeader('Content-Type', 'application/json');
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            const result = JSON.parse(xmlhttp.responseText);
+            alert(result.message);
+            if (result.message === "Funcionário cadastrado com sucesso!") {
+                document.getElementById('formFuncionario').reset();
+                atualizarListaFuncionarios(); // Atualizar a lista após cadastro
+            }
+        } else if (xmlhttp.readyState === 4) {
+            console.error('Erro ao cadastrar funcionário:', xmlhttp.statusText);
+            alert('Ocorreu um erro ao cadastrar o funcionário!');
         }
+    };
+    xmlhttp.send(JSON.stringify(data));
+}
 
-        // Inicializa a lista de funcionários quando a página carrega
-        document.addEventListener('DOMContentLoaded', atualizarListaFuncionarios);
+// Inicializa a lista de funcionários quando a página carrega
+document.addEventListener('DOMContentLoaded', atualizarListaFuncionarios);
 
-        // Adiciona o evento de submit ao formulário de cadastro
-        const form = document.getElementById('formFuncionario');
-        form.onsubmit = cadastrarFuncionario;
+// Adiciona o evento de submit ao formulário de cadastro
+const form = document.getElementById('formFuncionario');
+form.onsubmit = cadastrarFuncionario;
+
     </script>
 </body>
 </html>

@@ -59,128 +59,128 @@
         </div>
         
         <script>
-            let motoristaEmEdicao = null;
+           let motoristaEmEdicao = null;
 
-            document.getElementById('btnCadastrar').addEventListener('click', function() {
-                const nome = document.getElementById('nome').value.trim();
-                const cnh = document.getElementById('cnh').value.trim();
-                const cpf = document.getElementById('cpf').value.trim();
-                const id = document.getElementById('id').value.trim();
+    document.getElementById('btnCadastrar').addEventListener('click', function() {
+        const nome = document.getElementById('nome').value.trim();
+        const cnh = document.getElementById('cnh').value.trim();
+        const cpf = document.getElementById('cpf').value.trim();
+        const id = document.getElementById('id').value.trim();
 
-                if (nome && cnh && cpf && id) {
-                    if (motoristaEmEdicao) {
-                        // Atualizar motorista
-                        fetch('cadastrar_motorista.php', {
-                            method: 'PUT',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ id: motoristaEmEdicao, nome: nome, cnh: cnh, cpf: cpf })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            alert(data.message);
-                            listarMotoristas(); // Atualizar a lista
-                            limparFormulario();
-                        })
-                        .catch(error => {
-                            console.error("Erro ao atualizar motorista:", error);
-                        });
-                    } else {
-                        // Cadastrar novo motorista
-                        fetch('cadastrar_motorista.php', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ nome: nome, cnh: cnh, cpf: cpf, id: id })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            alert(data.message);
-                            listarMotoristas(); // Atualizar a lista
-                            limparFormulario();
-                        })
-                        .catch(error => {
-                            console.error("Erro ao cadastrar motorista:", error);
-                        });
-                    }
-                } else {
-                    alert("Preencha todos os campos para cadastrar ou editar um motorista!");
-                }
-            });
-
-            function listarMotoristas() {
-                fetch('cadastrar_motorista.php')
-                    .then(response => response.json())
-                    .then(data => {
-                        const listaMotoristas = document.getElementById('lista-motoristas');
-                        listaMotoristas.innerHTML = ''; // Limpar a lista atual
-
-                        data.forEach(motorista => {
-                            const li = document.createElement('li');
-                            li.innerHTML = `
-                                Nome: ${motorista.nome}, CNH: ${motorista.cnh}, CPF: ${motorista.cpf}, ID: ${motorista.id}
-                                <button class="editar" onclick="editarMotorista('${motorista.id}')">Editar</button>
-                                <button class="excluir" onclick="excluirMotorista('${motorista.id}')">Excluir</button>
-                            `;
-                            listaMotoristas.appendChild(li);
-                        });
-                    })
-                    .catch(error => {
-                        console.error("Erro ao listar os motoristas:", error);
-                    });
-            }
-
-            function excluirMotorista(id) {
-                fetch('cadastrar_motorista.php', {
-                    method: 'DELETE',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ id: id })
-                })
-                .then(response => response.json())
-                .then(data => {
+        if (nome && cnh && cpf && id) {
+            if (motoristaEmEdicao) {
+                // Atualizar motorista
+                let xmlhttp = new XMLHttpRequest();
+                xmlhttp.open('PUT', 'cadastrar_motorista.php', true);
+                xmlhttp.setRequestHeader('Content-Type', 'application/json');
+                xmlhttp.onload = function() {
+                    const data = JSON.parse(xmlhttp.responseText);
                     alert(data.message);
                     listarMotoristas(); // Atualizar a lista
-                })
-                .catch(error => {
-                    console.error("Erro ao excluir o motorista:", error);
-                });
+                    limparFormulario();
+                };
+                xmlhttp.onerror = function() {
+                    console.error("Erro ao atualizar motorista:", xmlhttp.statusText);
+                };
+                xmlhttp.send(JSON.stringify({ id: motoristaEmEdicao, nome: nome, cnh: cnh, cpf: cpf }));
+            } else {
+                // Cadastrar novo motorista
+                let xmlhttp = new XMLHttpRequest();
+                xmlhttp.open('POST', 'cadastrar_motorista.php', true);
+                xmlhttp.setRequestHeader('Content-Type', 'application/json');
+                xmlhttp.onload = function() {
+                    const data = JSON.parse(xmlhttp.responseText);
+                    alert(data.message);
+                    listarMotoristas(); // Atualizar a lista
+                    limparFormulario();
+                };
+                xmlhttp.onerror = function() {
+                    console.error("Erro ao cadastrar motorista:", xmlhttp.statusText);
+                };
+                xmlhttp.send(JSON.stringify({ nome: nome, cnh: cnh, cpf: cpf, id: id }));
             }
+        } else {
+            alert("Preencha todos os campos para cadastrar ou editar um motorista!");
+        }
+    });
 
-            function editarMotorista(id) {
-                fetch('cadastrar_motorista.php', {
-                    method: 'GET',
-                    headers: { 'Content-Type': 'application/json' }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    const motorista = data.find(motorista => motorista.id === id);
+    function listarMotoristas() {
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.open('GET', 'cadastrar_motorista.php', true);
+        xmlhttp.onload = function() {
+            const data = JSON.parse(xmlhttp.responseText);
+            const listaMotoristas = document.getElementById('lista-motoristas');
+            listaMotoristas.innerHTML = ''; // Limpar a lista atual
 
-                    if (motorista) {
-                        // Preencher os campos com os dados do motorista
-                        document.getElementById('nome').value = motorista.nome;
-                        document.getElementById('cnh').value = motorista.cnh;
-                        document.getElementById('cpf').value = motorista.cpf;
-                        document.getElementById('id').value = motorista.id;
+            data.forEach(motorista => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    Nome: ${motorista.nome}, CNH: ${motorista.cnh}, CPF: ${motorista.cpf}, ID: ${motorista.id}
+                    <button class="editar" onclick="editarMotorista('${motorista.id}')">Editar</button>
+                    <button class="excluir" onclick="excluirMotorista('${motorista.id}')">Excluir</button>
+                `;
+                listaMotoristas.appendChild(li);
+            });
+        };
+        xmlhttp.onerror = function() {
+            console.error("Erro ao listar os motoristas:", xmlhttp.statusText);
+        };
+        xmlhttp.send();
+    }
 
-                        // Definir o motorista em edição
-                        motoristaEmEdicao = id;
-                        document.getElementById('btnCadastrar').innerText = "Atualizar"; // Mudar o texto do botão para 'Atualizar'
-                    }
-                })
-                .catch(error => {
-                    console.error("Erro ao editar motorista:", error);
-                });
+    function excluirMotorista(id) {
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.open('DELETE', 'cadastrar_motorista.php', true);
+        xmlhttp.setRequestHeader('Content-Type', 'application/json');
+        xmlhttp.onload = function() {
+            const data = JSON.parse(xmlhttp.responseText);
+            alert(data.message);
+            listarMotoristas(); // Atualizar a lista
+        };
+        xmlhttp.onerror = function() {
+            console.error("Erro ao excluir o motorista:", xmlhttp.statusText);
+        };
+        xmlhttp.send(JSON.stringify({ id: id }));
+    }
+
+    function editarMotorista(id) {
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.open('GET', 'cadastrar_motorista.php', true);
+        xmlhttp.onload = function() {
+            const data = JSON.parse(xmlhttp.responseText);
+            const motorista = data.find(motorista => motorista.id === id);
+
+            if (motorista) {
+                // Preencher os campos com os dados do motorista
+                document.getElementById('nome').value = motorista.nome;
+                document.getElementById('cnh').value = motorista.cnh;
+                document.getElementById('cpf').value = motorista.cpf;
+                document.getElementById('id').value = motorista.id;
+
+                // Definir o motorista em edição
+                motoristaEmEdicao = id;
+                document.getElementById('btnCadastrar').innerText = "Atualizar"; // Mudar o texto do botão para 'Atualizar'
             }
+        };
+        xmlhttp.onerror = function() {
+            console.error("Erro ao editar motorista:", xmlhttp.statusText);
+        };
+        xmlhttp.send();
+    }
 
-            function limparFormulario() {
-                // Limpar os campos do formulário e resetar a edição
-                document.getElementById('nome').value = '';
-                document.getElementById('cnh').value = '';
-                document.getElementById('cpf').value = '';
-                document.getElementById('id').value = '';
-                motoristaEmEdicao = null;
-                document.getElementById('btnCadastrar').innerText = "Cadastrar"; // Mudar o texto do botão para 'Cadastrar'
-            }
+    function limparFormulario() {
+        // Limpar os campos do formulário e resetar a edição
+        document.getElementById('nome').value = '';
+        document.getElementById('cnh').value = '';
+        document.getElementById('cpf').value = '';
+        document.getElementById('id').value = '';
+        motoristaEmEdicao = null;
+        document.getElementById('btnCadastrar').innerText = "Cadastrar"; // Mudar o texto do botão para 'Cadastrar'
+    }
 
-            listarMotoristas();
+    // Inicializa a lista de motoristas ao carregar a página
+    listarMotoristas();
+
         </script>
         
 </body>
