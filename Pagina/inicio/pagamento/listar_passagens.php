@@ -41,7 +41,7 @@ $resultado = mysqli_query($conexao, $sql);
        <a href="../portal/portal.html">
            <img src="../exports/logo.png" alt="Logo Viação Galango">
         </a>
-        <button><a href="../../Cadastro e login/login.html">Entrar</a></button>
+
      </header>
 
     <div class="container">
